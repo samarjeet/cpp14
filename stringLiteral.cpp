@@ -3,7 +3,7 @@
 
 using namespace std;
 
-#define DEBUG_STRING_LITERAL NDEBUG
+#define DEBUG_STRING_LITERAL !NDEBUG
 
 namespace {
 
