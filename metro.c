@@ -20,6 +20,7 @@ struct edge_t{
 
 struct node_t{
   // data-specific elements
+  //std::string name;
   char* name;
   char line;
   int stoppingTime;
@@ -35,17 +36,21 @@ struct node_t{
 
 };
 
-struct hashKey_t{
+/*
+struct Key{
   char line;
   char* name;
+  bool operator==(const Key &other) const{
+    return (line=other.line && *name=);
+  }
 };
-
+*/
 edge_t *edge_root ;
 edge_t *e_next=0;
 // Constructing 400 edges as a guess right now,
 // will make it more accurate later. 
 void edges_init(){
-  edge_root = malloc(sizeof(edge_t)* 400);
+  edge_root = (edge_t*)malloc(sizeof(edge_t)* 400);
   //edge_next = edge_root + NUMBER_EDGES - 1;
 }
 
@@ -58,14 +63,21 @@ char* getString(char* str, int st, int end){
   return subString;
 }
 
+void addEdge(node_t* from, node_t* to, int cost){
+
+}
+
+
 int main(int argc, char* argv[]){
+  //std::unordered_map<hashKey_t, node_t> hashTest;
 
   char str[100], stationData[200];
   FILE *fp;
   char* token ;
   const char delim[2] = " ";
-
-  node_t *nodes = calloc(sizeof(node_t), N_NODES);
+  char* previousStopName = 0; 
+  //node_t *nodes = calloc(sizeof(node_t), N_NODES);
+  node_t *nodes = (node_t*)malloc(sizeof(node_t)*N_NODES);
   int nodeId=-1; 
   edges_init();
   char route;
@@ -74,18 +86,13 @@ int main(int argc, char* argv[]){
   fp = fopen ("metro.txt","r");
 
   while(fgets(str, 100, (FILE *)fp)){
-    //printf("%s", str);
+    // reading a route's data
     route=str[0];
     printf("%c\n", route);
     char* strPos = strchr(str, '(');
-    if (strPos==NULL){
-      printf("%s\n", "Error in input !\n");
-    }
+    if(0){}
     else {
       char* strPos2 = strchr(str, ')');
-      if (strPos2==NULL){
-        printf("%s\n", "Error in input !\n");
-      }
       int pos1 = strPos - str +1;
       int pos2 = strPos2 - str+1;
       char* subString = 0;
@@ -93,33 +100,65 @@ int main(int argc, char* argv[]){
       memcpy(subString, strPos+1, pos2-pos1-1);
       subString[pos2-pos1+1]=0;
       //char * s2 = getString(str, pos1, pos2);
-      
-      int i=0;
+      int stopId=0;
       int numberOfStops = atoi(subString);
 
-      ++nodeId;
-      for(i=0; i< numberOfStops; ++i){
+      int previousStoppingTime=0;
+      int previousWaitingTime=0;
+
+      //loop over all the stations for a route/color
+      for(; stopId< numberOfStops; ++stopId){
+         ++nodeId;
+        // reading a (station) stop data
         fgets(stationData, 100, (FILE *)fp);
         token = strtok(stationData, delim );
         int tokenId=0;
+        int stEdgeCost=0;
+
         while (token != NULL){
           if (tokenId==0){
-            printf ("\t%s\n", token);
+            printf ("\t%s", token);
             nodes[nodeId].line = route;
-            nodes[nodeId].name = token;
+            char* stationName = token;
+            nodes[nodeId].name = strdup(token);
           }
           else if (tokenId==1){
             nodes[nodeId].crossOvers = atoi(token);
           }
+          else if (tokenId==2){
+            stEdgeCost+= (atoi(token) - previousStoppingTime); 
+            previousStoppingTime = atoi(token);
+            stEdgeCost+= previousWaitingTime;
+          }
+          else if (tokenId==4 || ( stopId==0 || stopId==numberOfStops-1)){
+            int cross=0;
+            for(; cross < nodes[nodeId].crossOvers; cross++){
+             //printf("\t%s\t", token);
+             char newRoute = token[0];
+             token = strtok(NULL, delim);
+             printf("\tedge : from %c to %c, cost: %d\t", nodes[nodeId].line, newRoute, atoi(token));
+             token = strtok(NULL, delim);
+            }
+         }
+          else {
+            previousWaitingTime = atoi(token);
+          }
           token = strtok(NULL, delim );
           ++tokenId;
         }
-      }
+        // finished reading a stop's data
+        //printf("\t%d\n", stEdgeCost);
+        if (stopId >0){
+          //printf("\n\t\t\tedge : from %s to %s, cost : %d\n", previousStopName, nodes[nodeId].name, stEdgeCost);
+        }
+        //printf(" %s %s %d ", nodes[nodeId].name, nodes[0].name, nodeId);
+        //previousStopName=nodes[nodeId].name;
+        printf("\n");
+      } 
+      // finished reading all stops for a route/color
       fgets(str, 100, (FILE *)fp);
-      
     }
   }
-  
   fclose(fp);
   return 0;
 }
