@@ -56,7 +56,7 @@ char* getString(char* str, int st, int end){
 }
 
 void addEdge(node_t* from, node_t* to, int cost){
-  printf("\n\t\t\t\t%s(%c) -->%s(%c)[%d] ", from->name, from->route, to->name, to->route, cost);
+  printf("\n\t\t\t\t%s(%c,%d) -->%s(%c,%d)[%d] ", from->name, from->route, from->state, to->name, to->route,to->state,  cost);
   edge_next->nextNode=to;
   edge_next->cost=cost;
   edge_next->next=from->edge;
@@ -106,19 +106,19 @@ node_t* popQueue(){
 
 void showPath(node_t *nd){
   if(nd->via == nd)
-    printf("%s(%c)", nd->name, nd->route);
+    printf("%s(%c,%d)", nd->name, nd->route, nd->state);
   else if (!nd->via)
     printf("%s(%c)(unreached)", nd->name, nd->route);
   else {
     showPath(nd->via);
-    printf("-> %s(%c)[%d]", nd->name, nd->route, nd->dist);
+    printf("-> %s(%c,%d)[%d]", nd->name, nd->route, nd->state, nd->dist);
   }
 }
 
 struct Key{
   char route;
   std::string name;
-  int i;
+  int state;
   bool operator==(const Key &other) const{
     return (route==other.route && name== other.name && state==other.state);
   }
@@ -179,6 +179,7 @@ int main(int argc, char* argv[]){
       for(; stopId< numberOfStops; ++stopId){
          //++nodeId;
         // reading a (station) stop data
+        int currentWaitingTime = 0;
         fgets(stationData, 100, (FILE *)fp);
         token = strtok(stationData, delim );
         int tokenId=0;
@@ -247,6 +248,7 @@ int main(int argc, char* argv[]){
          }
           else {
             previousWaitingTime = atoi(token);
+            currentWaitingTime  = atoi(token);
           }
           token = strtok(NULL, delim );
           ++tokenId;
@@ -258,10 +260,13 @@ int main(int argc, char* argv[]){
           Key ka = Key{route, std::string(prevStopName), 1};
           Key kb = Key{route, std::string(currentStopName), 0};
           addEdge(hashNodes[ka], hashNodes[kb], stEdgeCost);
-          Key ka = Key{route, std::string(prevStopName), 0};
-          Key kb = Key{route, std::string(currentStopName), 1};
+          ka = Key{route, std::string(prevStopName), 0};
+          kb = Key{route, std::string(currentStopName), 1};
           addEdge(hashNodes[kb], hashNodes[ka], stEdgeCost);
         }
+        Key ka = Key{route, std::string(currentStopName), 0};
+        Key kb = Key{route, std::string(currentStopName), 1};
+        addEdge(hashNodes[ka], hashNodes[kb], currentWaitingTime);
         prevStopName = strdup(currentStopName);
         printf("\n");
       } 
@@ -275,15 +280,37 @@ int main(int argc, char* argv[]){
   node_t *lead;
   edge_t *e;
 
-  //Key k2 = {'g', "College_Park"};
-  //Key k1 = {'r', "Takoma"};
+  //Key k1 = {'g', "College_Park", 1};
+  //Key k2 = {'r', "Takoma", 0};
+  //Key k2 = {'g', "College_Park", 0};
+  //Key k1 = {'r', "Takoma", 1};
 
-  //Key k1 = {'r', "Takoma"};
-  //Key k2 = {'r', "Gallery_Place"};
+  //Key k1 = {'r', "Takoma", 1};
+  //Key k2 = {'r', "Gallery_Place", 0};
+  //Key k2 = {'r', "Takoma", 0};
+  //Key k1 = {'r', "Gallery_Place", 1};
 
-  Key k1 = {'s', "McLean"};
-  Key k2 = {'r', "Wheaton"};
-  
+  //Key k1 = {'g', "Waterfront", 1};
+  //Key k2 = {'g', "Navy_Yard_Ballpark", 0};
+  //Key k2 = {'g', "Waterfront", 0};
+  //Key k1 = {'g', "Navy_Yard_Ballpark", 1};
+
+  //Key k1 = {'r', "Glenmont", 1};
+  //Key k2 = {'r', "Shady_Grove", 0};
+  //Key k2 = {'r', "Glenmont", 0};
+  //Key k1 = {'r', "Shady_Grove", 1};
+
+  //Key k1 = {'r', "Metro_Center", 1};
+  //Key k2 = {'b', "King_St_Old_Town", 0};
+  //Key k1 = {'s', "McLean", 1};
+  //Key k2 = {'r', "Wheaton", 0};
+
+  //Key k1 = {'s', "Wiehle_Reston", 1};
+  //Key k2 = {'g', "College_Park", 0};
+
+  Key k1 = {'y', "Shaw_Howard_U", 0};
+  Key k2 = {'y', "Columbia_Heights", 0};
+
   //Key k1 = {'y', "U_St"};
   //Key k1 = {'r', "Glenmont"};
   //Key k2 = {'r', "Shady_Grove"};
