@@ -2,15 +2,17 @@
 #include<string.h>
 #include<stdlib.h>
 #include<unordered_map>
+#include<string>
+#include<algorithm>
 
 #define NUM_ROUTES 6
-#define NUMBER_EDGES 400
+#define N_EDGES 450
 #define N_NODES 200
 
 // data structures
 typedef struct node_t node_t, *heap_t;
 typedef struct edge_t edge_t;
-typedef struct hashKey_t hashKey_t;
+typedef struct Key Key;
 
 struct edge_t{
   node_t *nextNode; // target node of the edge
@@ -36,21 +38,14 @@ struct node_t{
 
 };
 
-/*
-struct Key{
-  char route;
-  char* name;
-  bool operator==(const Key &other) const{
-    return (route=other.route && *name=);
-  }
-};
-*/
+
+
 edge_t *edge_root ;
-edge_t *edge_next=0;
+edge_t *edge_next;
 // Constructing 400 edges as a guess right now,
 // will make it more accurate later. 
 void edges_init(){
-  edge_root = (edge_t*)calloc(sizeof(edge_t), 400);
+  edge_root = (edge_t*)calloc(sizeof(edge_t), N_EDGES);
   edge_next = edge_root ;//+ NUMBER_EDGES - 1;
 }
 
@@ -64,7 +59,7 @@ char* getString(char* str, int st, int end){
 }
 
 void addEdge(node_t* from, node_t* to, int cost){
-  printf("\n\t\t\tAdding edge from %s to %s ", from->name, to->name);
+  printf("\n\t\t\t\t%s(%c) -->%s(%c)[%d] ", from->name, from->route, to->name, to->route, cost);
   edge_next->nextNode=to;
   edge_next->cost=cost;
   edge_next->next=from->edge;
@@ -114,21 +109,41 @@ node_t* popQueue(){
 
 void showPath(node_t *nd){
   if(nd->via == nd)
-    printf("%s", nd->name);
+    printf("%s(%c)", nd->name, nd->route);
   else if (!nd->via)
-    printf("%s(unreached)", nd->name);
+    printf("%s(%c)(unreached)", nd->name, nd->route);
   else {
     showPath(nd->via);
-    printf("-> %s(%d)", nd->name, nd->dist);
+    printf("-> %s(%c)[%d]", nd->name, nd->route, nd->dist);
   }
 }
 
+struct Key{
+  char route;
+  std::string name;
+  bool operator==(const Key &other) const{
+    return (route==other.route && name== other.name);
+  }
+};
+namespace std{
+  template<>
+  struct hash<Key>{
+    size_t operator()(const struct Key &d) const{
+      return (std::hash<char>()(d.route) + std::hash<string>()(d.name));
+    }
+  };
+}
+
+
 int main(int argc, char* argv[]){
-  //std::unordered_map<hashKey_t, node_t> hashTest;
+  std::unordered_map<Key, node_t*> hashNodes;
 
   char str[100], stationData[200];
   FILE *fp;
   char* token ;
+  char* currentStopName;
+  char* prevStopName;
+
   const char delim[2] = " ";
   char* previousStopName = 0; 
   node_t *nodes = (node_t*)calloc(sizeof(node_t), N_NODES);
@@ -139,6 +154,7 @@ int main(int argc, char* argv[]){
 
   printf("Reading the metro data and setting up the graph..\n");
   fp = fopen ("metro.txt","r");
+  //fp = fopen ("b.txt","r");
 
   while(fgets(str, 100, (FILE *)fp)){
     // reading a route's data
@@ -163,22 +179,32 @@ int main(int argc, char* argv[]){
 
       //loop over all the stations for a route/color
       for(; stopId< numberOfStops; ++stopId){
-         ++nodeId;
+         //++nodeId;
         // reading a (station) stop data
         fgets(stationData, 100, (FILE *)fp);
         token = strtok(stationData, delim );
         int tokenId=0;
         int stEdgeCost=0;
-
+        int currentCrossOvers;
         while (token != NULL){
           if (tokenId==0){
+            currentStopName = strdup(token);
+            Key k1 = Key{route, std::string(token) };
             printf ("\t%s", token);
-            nodes[nodeId].route = route;
-            char* stationName = token;
-            nodes[nodeId].name = strdup(token);
+            if (hashNodes.count(k1)){
+              //printf ("\t%s\t%d", token, hashNodes.find(k1));
+              printf("\t%s(%c) already created..\t", currentStopName, route);
+            }
+            else {
+              ++nodeId;
+              nodes[nodeId].route = route;
+              nodes[nodeId].name = strdup(token);
+              hashNodes[k1]=nodes+nodeId;
+            }
           }
           else if (tokenId==1){
             nodes[nodeId].crossOvers = atoi(token);
+            currentCrossOvers=atoi(token);
           }
           else if (tokenId==2){
             stEdgeCost+= (atoi(token) - previousStoppingTime); 
@@ -187,11 +213,28 @@ int main(int argc, char* argv[]){
           }
           else if (tokenId==4 || ( stopId==0 || stopId==numberOfStops-1)){
             int cross=0;
-            for(; cross < nodes[nodeId].crossOvers; cross++){
+            for(; cross < currentCrossOvers; cross++){
              //printf("\t%s\t", token);
              char newRoute = token[0];
+             //Key knew = Key{newRoute, nodes[nodeId].name};
+             Key knew = Key{newRoute, currentStopName};
+             if (hashNodes.count(knew)){
+               printf("\n\t\t\t\t%s(%c) already exists\t", currentStopName, newRoute );
+               //printf("\t%d\t", hashNodes.count(knew));
+             }
+             else {
+              ++nodeId;
+              nodes[nodeId].route=newRoute;
+              nodes[nodeId].name=strdup(currentStopName);
+              hashNodes[knew]=nodes+nodeId;
+             }
              token = strtok(NULL, delim);
-             printf("\tedge : from %c to %c, cost: %d\t", nodes[nodeId].route, newRoute, atoi(token));
+             int crossOverEdgeCost = atoi(token);
+             Key kCurrent = Key{route, std::string(currentStopName)};
+             printf("..CroosOver from %c to %c stop : %s\t", route, newRoute, currentStopName);
+             addEdge(hashNodes[kCurrent], hashNodes[knew], crossOverEdgeCost);
+             //printf("\tedge : from %c to %c, cost: %d\t", route, newRoute, atoi(token));
+             //Key kCurrent = 
              token = strtok(NULL, delim);
             }
          }
@@ -205,12 +248,13 @@ int main(int argc, char* argv[]){
         //printf("\t%d\n", stEdgeCost);
         if (stopId >0){
           //printf("\n\t\t\tedge : from %s to %s, cost : %d\n", previousStopName, nodes[nodeId].name, stEdgeCost);
-          printf("...Adding two edges..");
-          addEdge(nodes+nodeId-1, nodes+nodeId, stEdgeCost);
-          addEdge(nodes+nodeId, nodes+nodeId-1, stEdgeCost);
+          printf("...Connecting %s and %s on route %c..", prevStopName, currentStopName, route);
+          Key ka = Key{route, std::string(prevStopName)};
+          Key kb = Key{route, std::string(currentStopName)};
+          addEdge(hashNodes[ka], hashNodes[kb], stEdgeCost);
+          addEdge(hashNodes[kb], hashNodes[ka], stEdgeCost);
         }
-        //printf(" %s %s %d ", nodes[nodeId].name, nodes[0].name, nodeId);
-        //previousStopName=nodes[nodeId].name;
+        prevStopName = strdup(currentStopName);
         printf("\n");
       } 
       // finished reading all stops for a route/color
@@ -223,11 +267,30 @@ int main(int argc, char* argv[]){
   node_t *lead;
   edge_t *e;
 
-  setDistance(nodes+1, nodes+1, 0);
+  //Key k2 = {'g', "College_Park"};
+  //Key k1 = {'r', "Takoma"};
+
+  //Key k1 = {'r', "Takoma"};
+  //Key k2 = {'r', "Gallery_Place"};
+
+  Key k1 = {'s', "McLean"};
+  Key k2 = {'r', "Wheaton"};
+  
+  //Key k1 = {'y', "U_St"};
+  //Key k1 = {'r', "Glenmont"};
+  //Key k2 = {'r', "Shady_Grove"};
+  //Key k1 = {'r', "Union_Station"};
+  //Key k2 = {'r', "Twinbrook"};
+  //Key k2 = {'b', "King_St_Old_Town"};
+  //Key k1 = {'r', "Metro_Center"};
+
+  setDistance(hashNodes[k1], hashNodes[k1], 0);
   while((lead =popQueue())){
     for(e=lead->edge; e; e=e->next)
       setDistance(e->nextNode, lead, lead->dist + e->cost);
   }
-  showPath(nodes+3);
+  //showPath(nodes+15);
+  showPath(hashNodes[k2]);
+  printf("\n");
   return 0;
 }
