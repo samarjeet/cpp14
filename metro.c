@@ -3,12 +3,12 @@
 #include<stdlib.h>
 #include<unordered_map>
 
-#define NUM_LINES 6
+#define NUM_ROUTES 6
 #define NUMBER_EDGES 400
 #define N_NODES 200
 
 // data structures
-typedef struct node_t node_t;
+typedef struct node_t node_t, *heap_t;
 typedef struct edge_t edge_t;
 typedef struct hashKey_t hashKey_t;
 
@@ -22,36 +22,36 @@ struct node_t{
   // data-specific elements
   //std::string name;
   char* name;
-  char line;
+  char route;
   int stoppingTime;
   int crossOvers;
-  int transferTime[NUM_LINES];
-  char transferToLine[NUM_LINES];
+  int transferTime[NUM_ROUTES];
+  char transferToRoute[NUM_ROUTES];
 
  // Graph and Dijkstra's algorithm variales
   edge_t *edge;
   node_t *via;
   int dist; // distance from the source 
-  int head_idx;
+  int heap_idx;
 
 };
 
 /*
 struct Key{
-  char line;
+  char route;
   char* name;
   bool operator==(const Key &other) const{
-    return (line=other.line && *name=);
+    return (route=other.route && *name=);
   }
 };
 */
 edge_t *edge_root ;
-edge_t *e_next=0;
+edge_t *edge_next=0;
 // Constructing 400 edges as a guess right now,
 // will make it more accurate later. 
 void edges_init(){
-  edge_root = (edge_t*)malloc(sizeof(edge_t)* 400);
-  //edge_next = edge_root + NUMBER_EDGES - 1;
+  edge_root = (edge_t*)calloc(sizeof(edge_t), 400);
+  edge_next = edge_root ;//+ NUMBER_EDGES - 1;
 }
 
 char* getString(char* str, int st, int end){
@@ -64,9 +64,64 @@ char* getString(char* str, int st, int end){
 }
 
 void addEdge(node_t* from, node_t* to, int cost){
+  printf("\n\t\t\tAdding edge from %s to %s ", from->name, to->name);
+  edge_next->nextNode=to;
+  edge_next->cost=cost;
+  edge_next->next=from->edge;
+  from->edge=edge_next;
+  edge_next++;
+}
+int heap_len;
+heap_t *heap;
 
+void setDistance(node_t *nd, node_t *via, int d){
+  int i,j; 
+
+  if(nd->via && d >=nd->dist ) return;
+  nd->dist = d;
+  nd->via = via;
+
+  i=nd->heap_idx;
+  if(!i) i = ++heap_len;
+
+  for(; i>1 && nd->dist < heap[j=i/2]->dist; i=j)
+    (heap[i]=heap[j])->heap_idx = i;
+  heap[i] = nd;
+  nd->heap_idx = i;
 }
 
+
+node_t* popQueue(){
+  node_t *nd, *tmp;
+  int i, j;
+
+  if(!heap_len) return 0;
+  nd = heap[1];
+  tmp=heap[heap_len--];
+
+  for(i=1; i<heap_len && (j=i*2) <= heap_len; i=j){
+    if(j<heap_len && heap[j]->dist > heap[j+1]->dist)
+      j++;
+    if(heap[j]->dist >= tmp->dist)
+      break;
+    (heap[i]=heap[j])->heap_idx = i;
+  }
+
+  heap[i]=tmp;
+  tmp->heap_idx=i;
+  return nd;
+}
+
+void showPath(node_t *nd){
+  if(nd->via == nd)
+    printf("%s", nd->name);
+  else if (!nd->via)
+    printf("%s(unreached)", nd->name);
+  else {
+    showPath(nd->via);
+    printf("-> %s(%d)", nd->name, nd->dist);
+  }
+}
 
 int main(int argc, char* argv[]){
   //std::unordered_map<hashKey_t, node_t> hashTest;
@@ -76,8 +131,8 @@ int main(int argc, char* argv[]){
   char* token ;
   const char delim[2] = " ";
   char* previousStopName = 0; 
-  //node_t *nodes = calloc(sizeof(node_t), N_NODES);
-  node_t *nodes = (node_t*)malloc(sizeof(node_t)*N_NODES);
+  node_t *nodes = (node_t*)calloc(sizeof(node_t), N_NODES);
+  //node_t *nodes = (node_t*)malloc(sizeof(node_t)*N_NODES);
   int nodeId=-1; 
   edges_init();
   char route;
@@ -118,7 +173,7 @@ int main(int argc, char* argv[]){
         while (token != NULL){
           if (tokenId==0){
             printf ("\t%s", token);
-            nodes[nodeId].line = route;
+            nodes[nodeId].route = route;
             char* stationName = token;
             nodes[nodeId].name = strdup(token);
           }
@@ -136,7 +191,7 @@ int main(int argc, char* argv[]){
              //printf("\t%s\t", token);
              char newRoute = token[0];
              token = strtok(NULL, delim);
-             printf("\tedge : from %c to %c, cost: %d\t", nodes[nodeId].line, newRoute, atoi(token));
+             printf("\tedge : from %c to %c, cost: %d\t", nodes[nodeId].route, newRoute, atoi(token));
              token = strtok(NULL, delim);
             }
          }
@@ -150,6 +205,9 @@ int main(int argc, char* argv[]){
         //printf("\t%d\n", stEdgeCost);
         if (stopId >0){
           //printf("\n\t\t\tedge : from %s to %s, cost : %d\n", previousStopName, nodes[nodeId].name, stEdgeCost);
+          printf("...Adding two edges..");
+          addEdge(nodes+nodeId-1, nodes+nodeId, stEdgeCost);
+          addEdge(nodes+nodeId, nodes+nodeId-1, stEdgeCost);
         }
         //printf(" %s %s %d ", nodes[nodeId].name, nodes[0].name, nodeId);
         //previousStopName=nodes[nodeId].name;
@@ -160,5 +218,16 @@ int main(int argc, char* argv[]){
     }
   }
   fclose(fp);
+  heap = (node_t**)calloc(sizeof(heap_t), N_NODES+1);
+  heap_len=0;
+  node_t *lead;
+  edge_t *e;
+
+  setDistance(nodes+1, nodes+1, 0);
+  while((lead =popQueue())){
+    for(e=lead->edge; e; e=e->next)
+      setDistance(e->nextNode, lead, lead->dist + e->cost);
+  }
+  showPath(nodes+3);
   return 0;
 }
