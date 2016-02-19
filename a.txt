@@ -1,0 +1,833 @@
+Reading the metro data and setting up the graph..
+g
+	Greenbelt
+				Greenbelt(g,0) -->Greenbelt(g,1)[0] 
+	College_Park...Connecting Greenbelt and College_Park on route g..
+				Greenbelt(g,1) -->College_Park(g,0)[125] 
+				College_Park(g,1) -->Greenbelt(g,0)[125] 
+				College_Park(g,0) -->College_Park(g,1)[30] 
+	Prince_George_Plaza...Connecting College_Park and Prince_George_Plaza on route g..
+				College_Park(g,1) -->Prince_George_Plaza(g,0)[175] 
+				Prince_George_Plaza(g,1) -->College_Park(g,0)[175] 
+				Prince_George_Plaza(g,0) -->Prince_George_Plaza(g,1)[35] 
+	West_Hyatsville...Connecting Prince_George_Plaza and West_Hyatsville on route g..
+				Prince_George_Plaza(g,1) -->West_Hyatsville(g,0)[150] 
+				West_Hyatsville(g,1) -->Prince_George_Plaza(g,0)[150] 
+				West_Hyatsville(g,0) -->West_Hyatsville(g,1)[25] 
+	Fort_Totten..CroosOver from g to y stop : Fort_Totten	
+				Fort_Totten(g,0) -->Fort_Totten(y,1)[15] ..CroosOver from g to r stop : Fort_Totten	
+				Fort_Totten(g,0) -->Fort_Totten(r,1)[45] ...Connecting West_Hyatsville and Fort_Totten on route g..
+				West_Hyatsville(g,1) -->Fort_Totten(g,0)[250] 
+				Fort_Totten(g,1) -->West_Hyatsville(g,0)[250] 
+				Fort_Totten(g,0) -->Fort_Totten(g,1)[60] 
+	Georgia_Ave_Petworth..CroosOver from g to y stop : Georgia_Ave_Petworth	
+				Georgia_Ave_Petworth(g,0) -->Georgia_Ave_Petworth(y,1)[20] ...Connecting Fort_Totten and Georgia_Ave_Petworth on route g..
+				Fort_Totten(g,1) -->Georgia_Ave_Petworth(g,0)[120] 
+				Georgia_Ave_Petworth(g,1) -->Fort_Totten(g,0)[120] 
+				Georgia_Ave_Petworth(g,0) -->Georgia_Ave_Petworth(g,1)[50] 
+	Columbia_Heights..CroosOver from g to y stop : Columbia_Heights	
+				Columbia_Heights(g,0) -->Columbia_Heights(y,1)[20] ...Connecting Georgia_Ave_Petworth and Columbia_Heights on route g..
+				Georgia_Ave_Petworth(g,1) -->Columbia_Heights(g,0)[180] 
+				Columbia_Heights(g,1) -->Georgia_Ave_Petworth(g,0)[180] 
+				Columbia_Heights(g,0) -->Columbia_Heights(g,1)[45] 
+	U_St..CroosOver from g to y stop : U_St	
+				U_St(g,0) -->U_St(y,1)[20] ...Connecting Columbia_Heights and U_St on route g..
+				Columbia_Heights(g,1) -->U_St(g,0)[180] 
+				U_St(g,1) -->Columbia_Heights(g,0)[180] 
+				U_St(g,0) -->U_St(g,1)[45] 
+	Shaw_Howard_U..CroosOver from g to y stop : Shaw_Howard_U	
+				Shaw_Howard_U(g,0) -->Shaw_Howard_U(y,1)[25] ...Connecting U_St and Shaw_Howard_U on route g..
+				U_St(g,1) -->Shaw_Howard_U(g,0)[120] 
+				Shaw_Howard_U(g,1) -->U_St(g,0)[120] 
+				Shaw_Howard_U(g,0) -->Shaw_Howard_U(g,1)[50] 
+	Mt_Vernon_Sq..CroosOver from g to y stop : Mt_Vernon_Sq	
+				Mt_Vernon_Sq(g,0) -->Mt_Vernon_Sq(y,1)[25] ...Connecting Shaw_Howard_U and Mt_Vernon_Sq on route g..
+				Shaw_Howard_U(g,1) -->Mt_Vernon_Sq(g,0)[120] 
+				Mt_Vernon_Sq(g,1) -->Shaw_Howard_U(g,0)[120] 
+				Mt_Vernon_Sq(g,0) -->Mt_Vernon_Sq(g,1)[50] 
+	Gallery_Place..CroosOver from g to y stop : Gallery_Place	
+				Gallery_Place(g,0) -->Gallery_Place(y,1)[10] ..CroosOver from g to r stop : Gallery_Place	
+				Gallery_Place(g,0) -->Gallery_Place(r,1)[50] ...Connecting Mt_Vernon_Sq and Gallery_Place on route g..
+				Mt_Vernon_Sq(g,1) -->Gallery_Place(g,0)[120] 
+				Gallery_Place(g,1) -->Mt_Vernon_Sq(g,0)[120] 
+				Gallery_Place(g,0) -->Gallery_Place(g,1)[100] 
+	Archives..CroosOver from g to y stop : Archives	
+				Archives(g,0) -->Archives(y,1)[25] ...Connecting Gallery_Place and Archives on route g..
+				Gallery_Place(g,1) -->Archives(g,0)[90] 
+				Archives(g,1) -->Gallery_Place(g,0)[90] 
+				Archives(g,0) -->Archives(g,1)[30] 
+	L'Enfant_Plaza..CroosOver from g to y stop : L'Enfant_Plaza	
+				L'Enfant_Plaza(g,0) -->L'Enfant_Plaza(y,1)[20] ..CroosOver from g to b stop : L'Enfant_Plaza	
+				L'Enfant_Plaza(g,0) -->L'Enfant_Plaza(b,1)[50] ..CroosOver from g to s stop : L'Enfant_Plaza	
+				L'Enfant_Plaza(g,0) -->L'Enfant_Plaza(s,1)[45] ..CroosOver from g to o stop : L'Enfant_Plaza	
+				L'Enfant_Plaza(g,0) -->L'Enfant_Plaza(o,1)[40] ...Connecting Archives and L'Enfant_Plaza on route g..
+				Archives(g,1) -->L'Enfant_Plaza(g,0)[170] 
+				L'Enfant_Plaza(g,1) -->Archives(g,0)[170] 
+				L'Enfant_Plaza(g,0) -->L'Enfant_Plaza(g,1)[45] 
+	Waterfront...Connecting L'Enfant_Plaza and Waterfront on route g..
+				L'Enfant_Plaza(g,1) -->Waterfront(g,0)[340] 
+				Waterfront(g,1) -->L'Enfant_Plaza(g,0)[340] 
+				Waterfront(g,0) -->Waterfront(g,1)[30] 
+	Navy_Yard_Ballpark...Connecting Waterfront and Navy_Yard_Ballpark on route g..
+				Waterfront(g,1) -->Navy_Yard_Ballpark(g,0)[60] 
+				Navy_Yard_Ballpark(g,1) -->Waterfront(g,0)[60] 
+				Navy_Yard_Ballpark(g,0) -->Navy_Yard_Ballpark(g,1)[45] 
+	Anacostia...Connecting Navy_Yard_Ballpark and Anacostia on route g..
+				Navy_Yard_Ballpark(g,1) -->Anacostia(g,0)[200] 
+				Anacostia(g,1) -->Navy_Yard_Ballpark(g,0)[200] 
+				Anacostia(g,0) -->Anacostia(g,1)[25] 
+	Congress_Heights...Connecting Anacostia and Congress_Heights on route g..
+				Anacostia(g,1) -->Congress_Heights(g,0)[90] 
+				Congress_Heights(g,1) -->Anacostia(g,0)[90] 
+				Congress_Heights(g,0) -->Congress_Heights(g,1)[20] 
+	Southern_Ave...Connecting Congress_Heights and Southern_Ave on route g..
+				Congress_Heights(g,1) -->Southern_Ave(g,0)[122] 
+				Southern_Ave(g,1) -->Congress_Heights(g,0)[122] 
+				Southern_Ave(g,0) -->Southern_Ave(g,1)[20] 
+	Naylor_Rd...Connecting Southern_Ave and Naylor_Rd on route g..
+				Southern_Ave(g,1) -->Naylor_Rd(g,0)[194] 
+				Naylor_Rd(g,1) -->Southern_Ave(g,0)[194] 
+				Naylor_Rd(g,0) -->Naylor_Rd(g,1)[20] 
+	Suitland...Connecting Naylor_Rd and Suitland on route g..
+				Naylor_Rd(g,1) -->Suitland(g,0)[139] 
+				Suitland(g,1) -->Naylor_Rd(g,0)[139] 
+				Suitland(g,0) -->Suitland(g,1)[20] 
+	Branch_Ave...Connecting Suitland and Branch_Ave on route g..
+				Suitland(g,1) -->Branch_Ave(g,0)[155] 
+				Branch_Ave(g,1) -->Suitland(g,0)[155] 
+				Branch_Ave(g,0) -->Branch_Ave(g,1)[0] 
+y
+	Fort_Totten	Fort_Totten(y, 1) already created..	
+				Fort_Totten(g, 1) already exists	..CroosOver from y to g stop : Fort_Totten	
+				Fort_Totten(y,0) -->Fort_Totten(g,1)[20] 
+				Fort_Totten(r, 1) already exists	..CroosOver from y to r stop : Fort_Totten	
+				Fort_Totten(y,0) -->Fort_Totten(r,1)[45] 
+				Fort_Totten(y,0) -->Fort_Totten(y,1)[0] 
+	Georgia_Ave_Petworth	Georgia_Ave_Petworth(y, 1) already created..	
+				Georgia_Ave_Petworth(g, 1) already exists	..CroosOver from y to g stop : Georgia_Ave_Petworth	
+				Georgia_Ave_Petworth(y,0) -->Georgia_Ave_Petworth(g,1)[20] ...Connecting Fort_Totten and Georgia_Ave_Petworth on route y..
+				Fort_Totten(y,1) -->Georgia_Ave_Petworth(y,0)[100] 
+				Georgia_Ave_Petworth(y,1) -->Fort_Totten(y,0)[100] 
+				Georgia_Ave_Petworth(y,0) -->Georgia_Ave_Petworth(y,1)[50] 
+	Columbia_Heights	Columbia_Heights(y, 1) already created..	
+				Columbia_Heights(g, 1) already exists	..CroosOver from y to g stop : Columbia_Heights	
+				Columbia_Heights(y,0) -->Columbia_Heights(g,1)[20] ...Connecting Georgia_Ave_Petworth and Columbia_Heights on route y..
+				Georgia_Ave_Petworth(y,1) -->Columbia_Heights(y,0)[180] 
+				Columbia_Heights(y,1) -->Georgia_Ave_Petworth(y,0)[180] 
+				Columbia_Heights(y,0) -->Columbia_Heights(y,1)[45] 
+	U_St	U_St(y, 1) already created..	
+				U_St(g, 1) already exists	..CroosOver from y to g stop : U_St	
+				U_St(y,0) -->U_St(g,1)[20] ...Connecting Columbia_Heights and U_St on route y..
+				Columbia_Heights(y,1) -->U_St(y,0)[180] 
+				U_St(y,1) -->Columbia_Heights(y,0)[180] 
+				U_St(y,0) -->U_St(y,1)[45] 
+	Shaw_Howard_U	Shaw_Howard_U(y, 1) already created..	
+				Shaw_Howard_U(g, 1) already exists	..CroosOver from y to g stop : Shaw_Howard_U	
+				Shaw_Howard_U(y,0) -->Shaw_Howard_U(g,1)[25] ...Connecting U_St and Shaw_Howard_U on route y..
+				U_St(y,1) -->Shaw_Howard_U(y,0)[120] 
+				Shaw_Howard_U(y,1) -->U_St(y,0)[120] 
+				Shaw_Howard_U(y,0) -->Shaw_Howard_U(y,1)[50] 
+	Mt_Vernon_Sq	Mt_Vernon_Sq(y, 1) already created..	
+				Mt_Vernon_Sq(g, 1) already exists	..CroosOver from y to g stop : Mt_Vernon_Sq	
+				Mt_Vernon_Sq(y,0) -->Mt_Vernon_Sq(g,1)[25] ...Connecting Shaw_Howard_U and Mt_Vernon_Sq on route y..
+				Shaw_Howard_U(y,1) -->Mt_Vernon_Sq(y,0)[120] 
+				Mt_Vernon_Sq(y,1) -->Shaw_Howard_U(y,0)[120] 
+				Mt_Vernon_Sq(y,0) -->Mt_Vernon_Sq(y,1)[50] 
+	Gallery_Place	Gallery_Place(y, 1) already created..	
+				Gallery_Place(g, 1) already exists	..CroosOver from y to g stop : Gallery_Place	
+				Gallery_Place(y,0) -->Gallery_Place(g,1)[60] 
+				Gallery_Place(r, 1) already exists	..CroosOver from y to r stop : Gallery_Place	
+				Gallery_Place(y,0) -->Gallery_Place(r,1)[30] ...Connecting Mt_Vernon_Sq and Gallery_Place on route y..
+				Mt_Vernon_Sq(y,1) -->Gallery_Place(y,0)[120] 
+				Gallery_Place(y,1) -->Mt_Vernon_Sq(y,0)[120] 
+				Gallery_Place(y,0) -->Gallery_Place(y,1)[100] 
+	Archives	Archives(y, 1) already created..	
+				Archives(g, 1) already exists	..CroosOver from y to g stop : Archives	
+				Archives(y,0) -->Archives(g,1)[25] ...Connecting Gallery_Place and Archives on route y..
+				Gallery_Place(y,1) -->Archives(y,0)[90] 
+				Archives(y,1) -->Gallery_Place(y,0)[90] 
+				Archives(y,0) -->Archives(y,1)[30] 
+	L'Enfant_Plaza	L'Enfant_Plaza(y, 1) already created..	
+				L'Enfant_Plaza(g, 1) already exists	..CroosOver from y to g stop : L'Enfant_Plaza	
+				L'Enfant_Plaza(y,0) -->L'Enfant_Plaza(g,1)[20] 
+				L'Enfant_Plaza(b, 1) already exists	..CroosOver from y to b stop : L'Enfant_Plaza	
+				L'Enfant_Plaza(y,0) -->L'Enfant_Plaza(b,1)[50] 
+				L'Enfant_Plaza(s, 1) already exists	..CroosOver from y to s stop : L'Enfant_Plaza	
+				L'Enfant_Plaza(y,0) -->L'Enfant_Plaza(s,1)[80] 
+				L'Enfant_Plaza(o, 1) already exists	..CroosOver from y to o stop : L'Enfant_Plaza	
+				L'Enfant_Plaza(y,0) -->L'Enfant_Plaza(o,1)[40] ...Connecting Archives and L'Enfant_Plaza on route y..
+				Archives(y,1) -->L'Enfant_Plaza(y,0)[170] 
+				L'Enfant_Plaza(y,1) -->Archives(y,0)[170] 
+				L'Enfant_Plaza(y,0) -->L'Enfant_Plaza(y,1)[45] 
+	Pentagon..CroosOver from y to b stop : Pentagon	
+				Pentagon(y,0) -->Pentagon(b,1)[35] ...Connecting L'Enfant_Plaza and Pentagon on route y..
+				L'Enfant_Plaza(y,1) -->Pentagon(y,0)[420] 
+				Pentagon(y,1) -->L'Enfant_Plaza(y,0)[420] 
+				Pentagon(y,0) -->Pentagon(y,1)[40] 
+	Pentagon_City..CroosOver from y to b stop : Pentagon_City	
+				Pentagon_City(y,0) -->Pentagon_City(b,1)[20] ...Connecting Pentagon and Pentagon_City on route y..
+				Pentagon(y,1) -->Pentagon_City(y,0)[150] 
+				Pentagon_City(y,1) -->Pentagon(y,0)[150] 
+				Pentagon_City(y,0) -->Pentagon_City(y,1)[30] 
+	Crystal_City..CroosOver from y to b stop : Crystal_City	
+				Crystal_City(y,0) -->Crystal_City(b,1)[20] ...Connecting Pentagon_City and Crystal_City on route y..
+				Pentagon_City(y,1) -->Crystal_City(y,0)[152] 
+				Crystal_City(y,1) -->Pentagon_City(y,0)[152] 
+				Crystal_City(y,0) -->Crystal_City(y,1)[30] 
+	Ronald_Reagan_Airport..CroosOver from y to b stop : Ronald_Reagan_Airport	
+				Ronald_Reagan_Airport(y,0) -->Ronald_Reagan_Airport(b,1)[20] ...Connecting Crystal_City and Ronald_Reagan_Airport on route y..
+				Crystal_City(y,1) -->Ronald_Reagan_Airport(y,0)[148] 
+				Ronald_Reagan_Airport(y,1) -->Crystal_City(y,0)[148] 
+				Ronald_Reagan_Airport(y,0) -->Ronald_Reagan_Airport(y,1)[50] 
+	Braddock_Rd..CroosOver from y to b stop : Braddock_Rd	
+				Braddock_Rd(y,0) -->Braddock_Rd(b,1)[20] ...Connecting Ronald_Reagan_Airport and Braddock_Rd on route y..
+				Ronald_Reagan_Airport(y,1) -->Braddock_Rd(y,0)[88] 
+				Braddock_Rd(y,1) -->Ronald_Reagan_Airport(y,0)[88] 
+				Braddock_Rd(y,0) -->Braddock_Rd(y,1)[20] 
+	King_St_Old_Town..CroosOver from y to b stop : King_St_Old_Town	
+				King_St_Old_Town(y,0) -->King_St_Old_Town(b,1)[58] ...Connecting Braddock_Rd and King_St_Old_Town on route y..
+				Braddock_Rd(y,1) -->King_St_Old_Town(y,0)[162] 
+				King_St_Old_Town(y,1) -->Braddock_Rd(y,0)[162] 
+				King_St_Old_Town(y,0) -->King_St_Old_Town(y,1)[30] 
+	Eisenhower_Ave...Connecting King_St_Old_Town and Eisenhower_Ave on route y..
+				King_St_Old_Town(y,1) -->Eisenhower_Ave(y,0)[160] 
+				Eisenhower_Ave(y,1) -->King_St_Old_Town(y,0)[160] 
+				Eisenhower_Ave(y,0) -->Eisenhower_Ave(y,1)[20] 
+	Hungtinton...Connecting Eisenhower_Ave and Hungtinton on route y..
+				Eisenhower_Ave(y,1) -->Hungtinton(y,0)[140] 
+				Hungtinton(y,1) -->Eisenhower_Ave(y,0)[140] 
+				Hungtinton(y,0) -->Hungtinton(y,1)[0] 
+b
+	Largo_Town_Center..CroosOver from b to s stop : Largo_Town_Center	
+				Largo_Town_Center(b,0) -->Largo_Town_Center(s,1)[0] 
+				Largo_Town_Center(b,0) -->Largo_Town_Center(b,1)[0] 
+	Morgan_Blvd..CroosOver from b to s stop : Morgan_Blvd	
+				Morgan_Blvd(b,0) -->Morgan_Blvd(s,1)[20] ...Connecting Largo_Town_Center and Morgan_Blvd on route b..
+				Largo_Town_Center(b,1) -->Morgan_Blvd(b,0)[111] 
+				Morgan_Blvd(b,1) -->Largo_Town_Center(b,0)[111] 
+				Morgan_Blvd(b,0) -->Morgan_Blvd(b,1)[21] 
+	Addison_Rd..CroosOver from b to s stop : Addison_Rd	
+				Addison_Rd(b,0) -->Addison_Rd(s,1)[20] ...Connecting Morgan_Blvd and Addison_Rd on route b..
+				Morgan_Blvd(b,1) -->Addison_Rd(b,0)[114] 
+				Addison_Rd(b,1) -->Morgan_Blvd(b,0)[114] 
+				Addison_Rd(b,0) -->Addison_Rd(b,1)[21] 
+	Capitol_Heights..CroosOver from b to s stop : Capitol_Heights	
+				Capitol_Heights(b,0) -->Capitol_Heights(s,1)[20] ...Connecting Addison_Rd and Capitol_Heights on route b..
+				Addison_Rd(b,1) -->Capitol_Heights(b,0)[114] 
+				Capitol_Heights(b,1) -->Addison_Rd(b,0)[114] 
+				Capitol_Heights(b,0) -->Capitol_Heights(b,1)[21] 
+	Benning_Rd..CroosOver from b to s stop : Benning_Rd	
+				Benning_Rd(b,0) -->Benning_Rd(s,1)[20] ...Connecting Capitol_Heights and Benning_Rd on route b..
+				Capitol_Heights(b,1) -->Benning_Rd(b,0)[111] 
+				Benning_Rd(b,1) -->Capitol_Heights(b,0)[111] 
+				Benning_Rd(b,0) -->Benning_Rd(b,1)[30] 
+	Stadium_Amory..CroosOver from b to s stop : Stadium_Amory	
+				Stadium_Amory(b,0) -->Stadium_Amory(s,1)[20] ..CroosOver from b to o stop : Stadium_Amory	
+				Stadium_Amory(b,0) -->Stadium_Amory(o,1)[45] ...Connecting Benning_Rd and Stadium_Amory on route b..
+				Benning_Rd(b,1) -->Stadium_Amory(b,0)[250] 
+				Stadium_Amory(b,1) -->Benning_Rd(b,0)[250] 
+				Stadium_Amory(b,0) -->Stadium_Amory(b,1)[60] 
+	Potomac_Ave..CroosOver from b to s stop : Potomac_Ave	
+				Potomac_Ave(b,0) -->Potomac_Ave(s,1)[20] ..CroosOver from b to o stop : Potomac_Ave	
+				Potomac_Ave(b,0) -->Potomac_Ave(o,1)[20] ...Connecting Stadium_Amory and Potomac_Ave on route b..
+				Stadium_Amory(b,1) -->Potomac_Ave(b,0)[130] 
+				Potomac_Ave(b,1) -->Stadium_Amory(b,0)[130] 
+				Potomac_Ave(b,0) -->Potomac_Ave(b,1)[30] 
+	Eastern_Market..CroosOver from b to s stop : Eastern_Market	
+				Eastern_Market(b,0) -->Eastern_Market(s,1)[30] ..CroosOver from b to o stop : Eastern_Market	
+				Eastern_Market(b,0) -->Eastern_Market(o,1)[20] ...Connecting Potomac_Ave and Eastern_Market on route b..
+				Potomac_Ave(b,1) -->Eastern_Market(b,0)[77] 
+				Eastern_Market(b,1) -->Potomac_Ave(b,0)[77] 
+				Eastern_Market(b,0) -->Eastern_Market(b,1)[25] 
+	Capitol_South..CroosOver from b to s stop : Capitol_South	
+				Capitol_South(b,0) -->Capitol_South(s,1)[20] ..CroosOver from b to o stop : Capitol_South	
+				Capitol_South(b,0) -->Capitol_South(o,1)[30] ...Connecting Eastern_Market and Capitol_South on route b..
+				Eastern_Market(b,1) -->Capitol_South(b,0)[102] 
+				Capitol_South(b,1) -->Eastern_Market(b,0)[102] 
+				Capitol_South(b,0) -->Capitol_South(b,1)[28] 
+	Federal_Center_SW..CroosOver from b to s stop : Federal_Center_SW	
+				Federal_Center_SW(b,0) -->Federal_Center_SW(s,1)[25] ..CroosOver from b to o stop : Federal_Center_SW	
+				Federal_Center_SW(b,0) -->Federal_Center_SW(o,1)[15] ...Connecting Capitol_South and Federal_Center_SW on route b..
+				Capitol_South(b,1) -->Federal_Center_SW(b,0)[165] 
+				Federal_Center_SW(b,1) -->Capitol_South(b,0)[165] 
+				Federal_Center_SW(b,0) -->Federal_Center_SW(b,1)[20] 
+	L'Enfant_Plaza	L'Enfant_Plaza(b, 1) already created..	
+				L'Enfant_Plaza(s, 1) already exists	..CroosOver from b to s stop : L'Enfant_Plaza	
+				L'Enfant_Plaza(b,0) -->L'Enfant_Plaza(s,1)[25] 
+				L'Enfant_Plaza(o, 1) already exists	..CroosOver from b to o stop : L'Enfant_Plaza	
+				L'Enfant_Plaza(b,0) -->L'Enfant_Plaza(o,1)[20] 
+				L'Enfant_Plaza(y, 1) already exists	..CroosOver from b to y stop : L'Enfant_Plaza	
+				L'Enfant_Plaza(b,0) -->L'Enfant_Plaza(y,1)[80] 
+				L'Enfant_Plaza(g, 1) already exists	..CroosOver from b to g stop : L'Enfant_Plaza	
+				L'Enfant_Plaza(b,0) -->L'Enfant_Plaza(g,1)[75] ...Connecting Federal_Center_SW and L'Enfant_Plaza on route b..
+				Federal_Center_SW(b,1) -->L'Enfant_Plaza(b,0)[126] 
+				L'Enfant_Plaza(b,1) -->Federal_Center_SW(b,0)[126] 
+				L'Enfant_Plaza(b,0) -->L'Enfant_Plaza(b,1)[99] 
+	Smithsonian..CroosOver from b to s stop : Smithsonian	
+				Smithsonian(b,0) -->Smithsonian(s,1)[25] ..CroosOver from b to o stop : Smithsonian	
+				Smithsonian(b,0) -->Smithsonian(o,1)[20] ...Connecting L'Enfant_Plaza and Smithsonian on route b..
+				L'Enfant_Plaza(b,1) -->Smithsonian(b,0)[200] 
+				Smithsonian(b,1) -->L'Enfant_Plaza(b,0)[200] 
+				Smithsonian(b,0) -->Smithsonian(b,1)[75] 
+	Federal_Triangle..CroosOver from b to s stop : Federal_Triangle	
+				Federal_Triangle(b,0) -->Federal_Triangle(s,1)[20] ..CroosOver from b to o stop : Federal_Triangle	
+				Federal_Triangle(b,0) -->Federal_Triangle(o,1)[25] ...Connecting Smithsonian and Federal_Triangle on route b..
+				Smithsonian(b,1) -->Federal_Triangle(b,0)[150] 
+				Federal_Triangle(b,1) -->Smithsonian(b,0)[150] 
+				Federal_Triangle(b,0) -->Federal_Triangle(b,1)[30] 
+	Metro_Center..CroosOver from b to s stop : Metro_Center	
+				Metro_Center(b,0) -->Metro_Center(s,1)[25] ..CroosOver from b to o stop : Metro_Center	
+				Metro_Center(b,0) -->Metro_Center(o,1)[24] ..CroosOver from b to r stop : Metro_Center	
+				Metro_Center(b,0) -->Metro_Center(r,1)[10] ...Connecting Federal_Triangle and Metro_Center on route b..
+				Federal_Triangle(b,1) -->Metro_Center(b,0)[149] 
+				Metro_Center(b,1) -->Federal_Triangle(b,0)[149] 
+				Metro_Center(b,0) -->Metro_Center(b,1)[45] 
+	McPherson_Sq..CroosOver from b to s stop : McPherson_Sq	
+				McPherson_Sq(b,0) -->McPherson_Sq(s,1)[20] ..CroosOver from b to o stop : McPherson_Sq	
+				McPherson_Sq(b,0) -->McPherson_Sq(o,1)[20] ...Connecting Metro_Center and McPherson_Sq on route b..
+				Metro_Center(b,1) -->McPherson_Sq(b,0)[188] 
+				McPherson_Sq(b,1) -->Metro_Center(b,0)[188] 
+				McPherson_Sq(b,0) -->McPherson_Sq(b,1)[30] 
+	Farragut_West..CroosOver from b to s stop : Farragut_West	
+				Farragut_West(b,0) -->Farragut_West(s,1)[25] ..CroosOver from b to o stop : Farragut_West	
+				Farragut_West(b,0) -->Farragut_West(o,1)[20] ...Connecting McPherson_Sq and Farragut_West on route b..
+				McPherson_Sq(b,1) -->Farragut_West(b,0)[198] 
+				Farragut_West(b,1) -->McPherson_Sq(b,0)[198] 
+				Farragut_West(b,0) -->Farragut_West(b,1)[30] 
+	Foggy_Bottom_GWU..CroosOver from b to s stop : Foggy_Bottom_GWU	
+				Foggy_Bottom_GWU(b,0) -->Foggy_Bottom_GWU(s,1)[30] ..CroosOver from b to o stop : Foggy_Bottom_GWU	
+				Foggy_Bottom_GWU(b,0) -->Foggy_Bottom_GWU(o,1)[30] ...Connecting Farragut_West and Foggy_Bottom_GWU on route b..
+				Farragut_West(b,1) -->Foggy_Bottom_GWU(b,0)[138] 
+				Foggy_Bottom_GWU(b,1) -->Farragut_West(b,0)[138] 
+				Foggy_Bottom_GWU(b,0) -->Foggy_Bottom_GWU(b,1)[25] 
+	Rosslyn..CroosOver from b to s stop : Rosslyn	
+				Rosslyn(b,0) -->Rosslyn(s,1)[45] ..CroosOver from b to o stop : Rosslyn	
+				Rosslyn(b,0) -->Rosslyn(o,1)[42] ...Connecting Foggy_Bottom_GWU and Rosslyn on route b..
+				Foggy_Bottom_GWU(b,1) -->Rosslyn(b,0)[379] 
+				Rosslyn(b,1) -->Foggy_Bottom_GWU(b,0)[379] 
+				Rosslyn(b,0) -->Rosslyn(b,1)[35] 
+	Arlington_Cemetery...Connecting Rosslyn and Arlington_Cemetery on route b..
+				Rosslyn(b,1) -->Arlington_Cemetery(b,0)[265] 
+				Arlington_Cemetery(b,1) -->Rosslyn(b,0)[265] 
+				Arlington_Cemetery(b,0) -->Arlington_Cemetery(b,1)[20] 
+	Pentagon	Pentagon(b, 1) already created..	
+				Pentagon(y, 1) already exists	..CroosOver from b to y stop : Pentagon	
+				Pentagon(b,0) -->Pentagon(y,1)[45] ...Connecting Arlington_Cemetery and Pentagon on route b..
+				Arlington_Cemetery(b,1) -->Pentagon(b,0)[228] 
+				Pentagon(b,1) -->Arlington_Cemetery(b,0)[228] 
+				Pentagon(b,0) -->Pentagon(b,1)[30] 
+	Pentagon_City	Pentagon_City(b, 1) already created..	
+				Pentagon_City(y, 1) already exists	..CroosOver from b to y stop : Pentagon_City	
+				Pentagon_City(b,0) -->Pentagon_City(y,1)[20] ...Connecting Pentagon and Pentagon_City on route b..
+				Pentagon(b,1) -->Pentagon_City(b,0)[155] 
+				Pentagon_City(b,1) -->Pentagon(b,0)[155] 
+				Pentagon_City(b,0) -->Pentagon_City(b,1)[25] 
+	Crystal_City	Crystal_City(b, 1) already created..	
+				Crystal_City(y, 1) already exists	..CroosOver from b to y stop : Crystal_City	
+				Crystal_City(b,0) -->Crystal_City(y,1)[30] ...Connecting Pentagon_City and Crystal_City on route b..
+				Pentagon_City(b,1) -->Crystal_City(b,0)[170] 
+				Crystal_City(b,1) -->Pentagon_City(b,0)[170] 
+				Crystal_City(b,0) -->Crystal_City(b,1)[25] 
+	Ronald_Reagan_Airport	Ronald_Reagan_Airport(b, 1) already created..	
+				Ronald_Reagan_Airport(y, 1) already exists	..CroosOver from b to y stop : Ronald_Reagan_Airport	
+				Ronald_Reagan_Airport(b,0) -->Ronald_Reagan_Airport(y,1)[20] ...Connecting Crystal_City and Ronald_Reagan_Airport on route b..
+				Crystal_City(b,1) -->Ronald_Reagan_Airport(b,0)[180] 
+				Ronald_Reagan_Airport(b,1) -->Crystal_City(b,0)[180] 
+				Ronald_Reagan_Airport(b,0) -->Ronald_Reagan_Airport(b,1)[50] 
+	Braddock_Rd	Braddock_Rd(b, 1) already created..	
+				Braddock_Rd(y, 1) already exists	..CroosOver from b to y stop : Braddock_Rd	
+				Braddock_Rd(b,0) -->Braddock_Rd(y,1)[20] ...Connecting Ronald_Reagan_Airport and Braddock_Rd on route b..
+				Ronald_Reagan_Airport(b,1) -->Braddock_Rd(b,0)[120] 
+				Braddock_Rd(b,1) -->Ronald_Reagan_Airport(b,0)[120] 
+				Braddock_Rd(b,0) -->Braddock_Rd(b,1)[20] 
+	King_St_Old_Town	King_St_Old_Town(b, 1) already created..	
+				King_St_Old_Town(y, 1) already exists	..CroosOver from b to y stop : King_St_Old_Town	
+				King_St_Old_Town(b,0) -->King_St_Old_Town(y,1)[40] ...Connecting Braddock_Rd and King_St_Old_Town on route b..
+				Braddock_Rd(b,1) -->King_St_Old_Town(b,0)[180] 
+				King_St_Old_Town(b,1) -->Braddock_Rd(b,0)[180] 
+				King_St_Old_Town(b,0) -->King_St_Old_Town(b,1)[20] 
+	Van_Dorn_St...Connecting King_St_Old_Town and Van_Dorn_St on route b..
+				King_St_Old_Town(b,1) -->Van_Dorn_St(b,0)[300] 
+				Van_Dorn_St(b,1) -->King_St_Old_Town(b,0)[300] 
+				Van_Dorn_St(b,0) -->Van_Dorn_St(b,1)[20] 
+	Franconia_Springfield...Connecting Van_Dorn_St and Franconia_Springfield on route b..
+				Van_Dorn_St(b,1) -->Franconia_Springfield(b,0)[190] 
+				Franconia_Springfield(b,1) -->Van_Dorn_St(b,0)[190] 
+				Franconia_Springfield(b,0) -->Franconia_Springfield(b,1)[0] 
+s
+	Largo_Town_Center	Largo_Town_Center(s, 1) already created..	
+				Largo_Town_Center(b, 1) already exists	..CroosOver from s to b stop : Largo_Town_Center	
+				Largo_Town_Center(s,0) -->Largo_Town_Center(b,1)[0] 
+				Largo_Town_Center(s,0) -->Largo_Town_Center(s,1)[0] 
+	Morgan_Blvd	Morgan_Blvd(s, 1) already created..	
+				Morgan_Blvd(b, 1) already exists	..CroosOver from s to b stop : Morgan_Blvd	
+				Morgan_Blvd(s,0) -->Morgan_Blvd(b,1)[20] ...Connecting Largo_Town_Center and Morgan_Blvd on route s..
+				Largo_Town_Center(s,1) -->Morgan_Blvd(s,0)[112] 
+				Morgan_Blvd(s,1) -->Largo_Town_Center(s,0)[112] 
+				Morgan_Blvd(s,0) -->Morgan_Blvd(s,1)[18] 
+	Addison_Rd	Addison_Rd(s, 1) already created..	
+				Addison_Rd(b, 1) already exists	..CroosOver from s to b stop : Addison_Rd	
+				Addison_Rd(s,0) -->Addison_Rd(b,1)[19] ...Connecting Morgan_Blvd and Addison_Rd on route s..
+				Morgan_Blvd(s,1) -->Addison_Rd(s,0)[113] 
+				Addison_Rd(s,1) -->Morgan_Blvd(s,0)[113] 
+				Addison_Rd(s,0) -->Addison_Rd(s,1)[20] 
+	Capitol_Heights	Capitol_Heights(s, 1) already created..	
+				Capitol_Heights(b, 1) already exists	..CroosOver from s to b stop : Capitol_Heights	
+				Capitol_Heights(s,0) -->Capitol_Heights(b,1)[10] ...Connecting Addison_Rd and Capitol_Heights on route s..
+				Addison_Rd(s,1) -->Capitol_Heights(s,0)[115] 
+				Capitol_Heights(s,1) -->Addison_Rd(s,0)[115] 
+				Capitol_Heights(s,0) -->Capitol_Heights(s,1)[20] 
+	Benning_Rd	Benning_Rd(s, 1) already created..	
+				Benning_Rd(b, 1) already exists	..CroosOver from s to b stop : Benning_Rd	
+				Benning_Rd(s,0) -->Benning_Rd(b,1)[20] ...Connecting Capitol_Heights and Benning_Rd on route s..
+				Capitol_Heights(s,1) -->Benning_Rd(s,0)[110] 
+				Benning_Rd(s,1) -->Capitol_Heights(s,0)[110] 
+				Benning_Rd(s,0) -->Benning_Rd(s,1)[30] 
+	Stadium_Amory	Stadium_Amory(s, 1) already created..	
+				Stadium_Amory(b, 1) already exists	..CroosOver from s to b stop : Stadium_Amory	
+				Stadium_Amory(s,0) -->Stadium_Amory(b,1)[18] 
+				Stadium_Amory(o, 1) already exists	..CroosOver from s to o stop : Stadium_Amory	
+				Stadium_Amory(s,0) -->Stadium_Amory(o,1)[70] ...Connecting Benning_Rd and Stadium_Amory on route s..
+				Benning_Rd(s,1) -->Stadium_Amory(s,0)[240] 
+				Stadium_Amory(s,1) -->Benning_Rd(s,0)[240] 
+				Stadium_Amory(s,0) -->Stadium_Amory(s,1)[55] 
+	Potomac_Ave	Potomac_Ave(s, 1) already created..	
+				Potomac_Ave(b, 1) already exists	..CroosOver from s to b stop : Potomac_Ave	
+				Potomac_Ave(s,0) -->Potomac_Ave(b,1)[25] 
+				Potomac_Ave(o, 1) already exists	..CroosOver from s to o stop : Potomac_Ave	
+				Potomac_Ave(s,0) -->Potomac_Ave(o,1)[50] ...Connecting Stadium_Amory and Potomac_Ave on route s..
+				Stadium_Amory(s,1) -->Potomac_Ave(s,0)[130] 
+				Potomac_Ave(s,1) -->Stadium_Amory(s,0)[130] 
+				Potomac_Ave(s,0) -->Potomac_Ave(s,1)[20] 
+	Eastern_Market	Eastern_Market(s, 1) already created..	
+				Eastern_Market(b, 1) already exists	..CroosOver from s to b stop : Eastern_Market	
+				Eastern_Market(s,0) -->Eastern_Market(b,1)[25] 
+				Eastern_Market(o, 1) already exists	..CroosOver from s to o stop : Eastern_Market	
+				Eastern_Market(s,0) -->Eastern_Market(o,1)[45] ...Connecting Potomac_Ave and Eastern_Market on route s..
+				Potomac_Ave(s,1) -->Eastern_Market(s,0)[80] 
+				Eastern_Market(s,1) -->Potomac_Ave(s,0)[80] 
+				Eastern_Market(s,0) -->Eastern_Market(s,1)[25] 
+	Capitol_South	Capitol_South(s, 1) already created..	
+				Capitol_South(b, 1) already exists	..CroosOver from s to b stop : Capitol_South	
+				Capitol_South(s,0) -->Capitol_South(b,1)[40] 
+				Capitol_South(o, 1) already exists	..CroosOver from s to o stop : Capitol_South	
+				Capitol_South(s,0) -->Capitol_South(o,1)[35] ...Connecting Eastern_Market and Capitol_South on route s..
+				Eastern_Market(s,1) -->Capitol_South(s,0)[99] 
+				Capitol_South(s,1) -->Eastern_Market(s,0)[99] 
+				Capitol_South(s,0) -->Capitol_South(s,1)[55] 
+	Federal_Center_SW	Federal_Center_SW(s, 1) already created..	
+				Federal_Center_SW(b, 1) already exists	..CroosOver from s to b stop : Federal_Center_SW	
+				Federal_Center_SW(s,0) -->Federal_Center_SW(b,1)[20] 
+				Federal_Center_SW(o, 1) already exists	..CroosOver from s to o stop : Federal_Center_SW	
+				Federal_Center_SW(s,0) -->Federal_Center_SW(o,1)[45] ...Connecting Capitol_South and Federal_Center_SW on route s..
+				Capitol_South(s,1) -->Federal_Center_SW(s,0)[201] 
+				Federal_Center_SW(s,1) -->Capitol_South(s,0)[201] 
+				Federal_Center_SW(s,0) -->Federal_Center_SW(s,1)[30] 
+	L'Enfant_Plaza	L'Enfant_Plaza(s, 1) already created..	
+				L'Enfant_Plaza(b, 1) already exists	..CroosOver from s to b stop : L'Enfant_Plaza	
+				L'Enfant_Plaza(s,0) -->L'Enfant_Plaza(b,1)[20] 
+				L'Enfant_Plaza(o, 1) already exists	..CroosOver from s to o stop : L'Enfant_Plaza	
+				L'Enfant_Plaza(s,0) -->L'Enfant_Plaza(o,1)[30] 
+				L'Enfant_Plaza(g, 1) already exists	..CroosOver from s to g stop : L'Enfant_Plaza	
+				L'Enfant_Plaza(s,0) -->L'Enfant_Plaza(g,1)[70] 
+				L'Enfant_Plaza(y, 1) already exists	..CroosOver from s to y stop : L'Enfant_Plaza	
+				L'Enfant_Plaza(s,0) -->L'Enfant_Plaza(y,1)[65] ...Connecting Federal_Center_SW and L'Enfant_Plaza on route s..
+				Federal_Center_SW(s,1) -->L'Enfant_Plaza(s,0)[120] 
+				L'Enfant_Plaza(s,1) -->Federal_Center_SW(s,0)[120] 
+				L'Enfant_Plaza(s,0) -->L'Enfant_Plaza(s,1)[60] 
+	Smithsonian	Smithsonian(s, 1) already created..	
+				Smithsonian(b, 1) already exists	..CroosOver from s to b stop : Smithsonian	
+				Smithsonian(s,0) -->Smithsonian(b,1)[20] 
+				Smithsonian(o, 1) already exists	..CroosOver from s to o stop : Smithsonian	
+				Smithsonian(s,0) -->Smithsonian(o,1)[25] ...Connecting L'Enfant_Plaza and Smithsonian on route s..
+				L'Enfant_Plaza(s,1) -->Smithsonian(s,0)[230] 
+				Smithsonian(s,1) -->L'Enfant_Plaza(s,0)[230] 
+				Smithsonian(s,0) -->Smithsonian(s,1)[45] 
+	Federal_Triangle	Federal_Triangle(s, 1) already created..	
+				Federal_Triangle(b, 1) already exists	..CroosOver from s to b stop : Federal_Triangle	
+				Federal_Triangle(s,0) -->Federal_Triangle(b,1)[15] 
+				Federal_Triangle(o, 1) already exists	..CroosOver from s to o stop : Federal_Triangle	
+				Federal_Triangle(s,0) -->Federal_Triangle(o,1)[30] ...Connecting Smithsonian and Federal_Triangle on route s..
+				Smithsonian(s,1) -->Federal_Triangle(s,0)[149] 
+				Federal_Triangle(s,1) -->Smithsonian(s,0)[149] 
+				Federal_Triangle(s,0) -->Federal_Triangle(s,1)[40] 
+	Metro_Center	Metro_Center(s, 1) already created..	
+				Metro_Center(r, 1) already exists	..CroosOver from s to r stop : Metro_Center	
+				Metro_Center(s,0) -->Metro_Center(r,1)[40] 
+				Metro_Center(b, 1) already exists	..CroosOver from s to b stop : Metro_Center	
+				Metro_Center(s,0) -->Metro_Center(b,1)[10] 
+				Metro_Center(o, 1) already exists	..CroosOver from s to o stop : Metro_Center	
+				Metro_Center(s,0) -->Metro_Center(o,1)[10] ...Connecting Federal_Triangle and Metro_Center on route s..
+				Federal_Triangle(s,1) -->Metro_Center(s,0)[101] 
+				Metro_Center(s,1) -->Federal_Triangle(s,0)[101] 
+				Metro_Center(s,0) -->Metro_Center(s,1)[60] 
+	McPherson_Sq	McPherson_Sq(s, 1) already created..	
+				McPherson_Sq(b, 1) already exists	..CroosOver from s to b stop : McPherson_Sq	
+				McPherson_Sq(s,0) -->McPherson_Sq(b,1)[20] 
+				McPherson_Sq(o, 1) already exists	..CroosOver from s to o stop : McPherson_Sq	
+				McPherson_Sq(s,0) -->McPherson_Sq(o,1)[20] ...Connecting Metro_Center and McPherson_Sq on route s..
+				Metro_Center(s,1) -->McPherson_Sq(s,0)[192] 
+				McPherson_Sq(s,1) -->Metro_Center(s,0)[192] 
+				McPherson_Sq(s,0) -->McPherson_Sq(s,1)[25] 
+	Farragut_West	Farragut_West(s, 1) already created..	
+				Farragut_West(b, 1) already exists	..CroosOver from s to b stop : Farragut_West	
+				Farragut_West(s,0) -->Farragut_West(b,1)[15] 
+				Farragut_West(o, 1) already exists	..CroosOver from s to o stop : Farragut_West	
+				Farragut_West(s,0) -->Farragut_West(o,1)[25] ...Connecting McPherson_Sq and Farragut_West on route s..
+				McPherson_Sq(s,1) -->Farragut_West(s,0)[208] 
+				Farragut_West(s,1) -->McPherson_Sq(s,0)[208] 
+				Farragut_West(s,0) -->Farragut_West(s,1)[20] 
+	Foggy_Bottom_GWU	Foggy_Bottom_GWU(s, 1) already created..	
+				Foggy_Bottom_GWU(b, 1) already exists	..CroosOver from s to b stop : Foggy_Bottom_GWU	
+				Foggy_Bottom_GWU(s,0) -->Foggy_Bottom_GWU(b,1)[20] 
+				Foggy_Bottom_GWU(o, 1) already exists	..CroosOver from s to o stop : Foggy_Bottom_GWU	
+				Foggy_Bottom_GWU(s,0) -->Foggy_Bottom_GWU(o,1)[16] ...Connecting Farragut_West and Foggy_Bottom_GWU on route s..
+				Farragut_West(s,1) -->Foggy_Bottom_GWU(s,0)[130] 
+				Foggy_Bottom_GWU(s,1) -->Farragut_West(s,0)[130] 
+				Foggy_Bottom_GWU(s,0) -->Foggy_Bottom_GWU(s,1)[20] 
+	Rosslyn	Rosslyn(s, 1) already created..	
+				Rosslyn(b, 1) already exists	..CroosOver from s to b stop : Rosslyn	
+				Rosslyn(s,0) -->Rosslyn(b,1)[55] 
+				Rosslyn(o, 1) already exists	..CroosOver from s to o stop : Rosslyn	
+				Rosslyn(s,0) -->Rosslyn(o,1)[20] ...Connecting Foggy_Bottom_GWU and Rosslyn on route s..
+				Foggy_Bottom_GWU(s,1) -->Rosslyn(s,0)[390] 
+				Rosslyn(s,1) -->Foggy_Bottom_GWU(s,0)[390] 
+				Rosslyn(s,0) -->Rosslyn(s,1)[40] 
+	Court_House..CroosOver from s to o stop : Court_House	
+				Court_House(s,0) -->Court_House(o,1)[15] ...Connecting Rosslyn and Court_House on route s..
+				Rosslyn(s,1) -->Court_House(s,0)[260] 
+				Court_House(s,1) -->Rosslyn(s,0)[260] 
+				Court_House(s,0) -->Court_House(s,1)[20] 
+	Clarendon..CroosOver from s to o stop : Clarendon	
+				Clarendon(s,0) -->Clarendon(o,1)[22] ...Connecting Court_House and Clarendon on route s..
+				Court_House(s,1) -->Clarendon(s,0)[120] 
+				Clarendon(s,1) -->Court_House(s,0)[120] 
+				Clarendon(s,0) -->Clarendon(s,1)[25] 
+	Virginia_Sq_GMU..CroosOver from s to o stop : Virginia_Sq_GMU	
+				Virginia_Sq_GMU(s,0) -->Virginia_Sq_GMU(o,1)[15] ...Connecting Clarendon and Virginia_Sq_GMU on route s..
+				Clarendon(s,1) -->Virginia_Sq_GMU(s,0)[133] 
+				Virginia_Sq_GMU(s,1) -->Clarendon(s,0)[133] 
+				Virginia_Sq_GMU(s,0) -->Virginia_Sq_GMU(s,1)[30] 
+	Ballston_MU..CroosOver from s to o stop : Ballston_MU	
+				Ballston_MU(s,0) -->Ballston_MU(o,1)[20] ...Connecting Virginia_Sq_GMU and Ballston_MU on route s..
+				Virginia_Sq_GMU(s,1) -->Ballston_MU(s,0)[167] 
+				Ballston_MU(s,1) -->Virginia_Sq_GMU(s,0)[167] 
+				Ballston_MU(s,0) -->Ballston_MU(s,1)[25] 
+	East_Falls_Church..CroosOver from s to o stop : East_Falls_Church	
+				East_Falls_Church(s,0) -->East_Falls_Church(o,1)[45] ...Connecting Ballston_MU and East_Falls_Church on route s..
+				Ballston_MU(s,1) -->East_Falls_Church(s,0)[150] 
+				East_Falls_Church(s,1) -->Ballston_MU(s,0)[150] 
+				East_Falls_Church(s,0) -->East_Falls_Church(s,1)[50] 
+	McLean...Connecting East_Falls_Church and McLean on route s..
+				East_Falls_Church(s,1) -->McLean(s,0)[151] 
+				McLean(s,1) -->East_Falls_Church(s,0)[151] 
+				McLean(s,0) -->McLean(s,1)[20] 
+	Tysons_Corner...Connecting McLean and Tysons_Corner on route s..
+				McLean(s,1) -->Tysons_Corner(s,0)[182] 
+				Tysons_Corner(s,1) -->McLean(s,0)[182] 
+				Tysons_Corner(s,0) -->Tysons_Corner(s,1)[50] 
+	Greensboro...Connecting Tysons_Corner and Greensboro on route s..
+				Tysons_Corner(s,1) -->Greensboro(s,0)[117] 
+				Greensboro(s,1) -->Tysons_Corner(s,0)[117] 
+				Greensboro(s,0) -->Greensboro(s,1)[30] 
+	Spring_Hill...Connecting Greensboro and Spring_Hill on route s..
+				Greensboro(s,1) -->Spring_Hill(s,0)[150] 
+				Spring_Hill(s,1) -->Greensboro(s,0)[150] 
+				Spring_Hill(s,0) -->Spring_Hill(s,1)[20] 
+	Wiehle_Reston...Connecting Spring_Hill and Wiehle_Reston on route s..
+				Spring_Hill(s,1) -->Wiehle_Reston(s,0)[140] 
+				Wiehle_Reston(s,1) -->Spring_Hill(s,0)[140] 
+				Wiehle_Reston(s,0) -->Wiehle_Reston(s,1)[0] 
+o
+	New_Carrollton
+				New_Carrollton(o,0) -->New_Carrollton(o,1)[0] 
+	Landover...Connecting New_Carrollton and Landover on route o..
+				New_Carrollton(o,1) -->Landover(o,0)[121] 
+				Landover(o,1) -->New_Carrollton(o,0)[121] 
+				Landover(o,0) -->Landover(o,1)[25] 
+	Cheverly...Connecting Landover and Cheverly on route o..
+				Landover(o,1) -->Cheverly(o,0)[129] 
+				Cheverly(o,1) -->Landover(o,0)[129] 
+				Cheverly(o,0) -->Cheverly(o,1)[20] 
+	Deanwood...Connecting Cheverly and Deanwood on route o..
+				Cheverly(o,1) -->Deanwood(o,0)[123] 
+				Deanwood(o,1) -->Cheverly(o,0)[123] 
+				Deanwood(o,0) -->Deanwood(o,1)[26] 
+	Minneasota_Ave...Connecting Deanwood and Minneasota_Ave on route o..
+				Deanwood(o,1) -->Minneasota_Ave(o,0)[129] 
+				Minneasota_Ave(o,1) -->Deanwood(o,0)[129] 
+				Minneasota_Ave(o,0) -->Minneasota_Ave(o,1)[22] 
+	Stadium_Amory	Stadium_Amory(o, 1) already created..	
+				Stadium_Amory(s, 1) already exists	..CroosOver from o to s stop : Stadium_Amory	
+				Stadium_Amory(o,0) -->Stadium_Amory(s,1)[50] 
+				Stadium_Amory(b, 1) already exists	..CroosOver from o to b stop : Stadium_Amory	
+				Stadium_Amory(o,0) -->Stadium_Amory(b,1)[55] ...Connecting Minneasota_Ave and Stadium_Amory on route o..
+				Minneasota_Ave(o,1) -->Stadium_Amory(o,0)[298] 
+				Stadium_Amory(o,1) -->Minneasota_Ave(o,0)[298] 
+				Stadium_Amory(o,0) -->Stadium_Amory(o,1)[45] 
+	Potomac_Ave	Potomac_Ave(o, 1) already created..	
+				Potomac_Ave(s, 1) already exists	..CroosOver from o to s stop : Potomac_Ave	
+				Potomac_Ave(o,0) -->Potomac_Ave(s,1)[40] 
+				Potomac_Ave(b, 1) already exists	..CroosOver from o to b stop : Potomac_Ave	
+				Potomac_Ave(o,0) -->Potomac_Ave(b,1)[45] ...Connecting Stadium_Amory and Potomac_Ave on route o..
+				Stadium_Amory(o,1) -->Potomac_Ave(o,0)[107] 
+				Potomac_Ave(o,1) -->Stadium_Amory(o,0)[107] 
+				Potomac_Ave(o,0) -->Potomac_Ave(o,1)[20] 
+	Eastern_Market	Eastern_Market(o, 1) already created..	
+				Eastern_Market(s, 1) already exists	..CroosOver from o to s stop : Eastern_Market	
+				Eastern_Market(o,0) -->Eastern_Market(s,1)[40] 
+				Eastern_Market(b, 1) already exists	..CroosOver from o to b stop : Eastern_Market	
+				Eastern_Market(o,0) -->Eastern_Market(b,1)[40] ...Connecting Potomac_Ave and Eastern_Market on route o..
+				Potomac_Ave(o,1) -->Eastern_Market(o,0)[93] 
+				Eastern_Market(o,1) -->Potomac_Ave(o,0)[93] 
+				Eastern_Market(o,0) -->Eastern_Market(o,1)[24] 
+	Capitol_South	Capitol_South(o, 1) already created..	
+				Capitol_South(s, 1) already exists	..CroosOver from o to s stop : Capitol_South	
+				Capitol_South(o,0) -->Capitol_South(s,1)[40] 
+				Capitol_South(b, 1) already exists	..CroosOver from o to b stop : Capitol_South	
+				Capitol_South(o,0) -->Capitol_South(b,1)[40] ...Connecting Eastern_Market and Capitol_South on route o..
+				Eastern_Market(o,1) -->Capitol_South(o,0)[108] 
+				Capitol_South(o,1) -->Eastern_Market(o,0)[108] 
+				Capitol_South(o,0) -->Capitol_South(o,1)[20] 
+	Federal_Center_SW	Federal_Center_SW(o, 1) already created..	
+				Federal_Center_SW(s, 1) already exists	..CroosOver from o to s stop : Federal_Center_SW	
+				Federal_Center_SW(o,0) -->Federal_Center_SW(s,1)[35] 
+				Federal_Center_SW(b, 1) already exists	..CroosOver from o to b stop : Federal_Center_SW	
+				Federal_Center_SW(o,0) -->Federal_Center_SW(b,1)[40] ...Connecting Capitol_South and Federal_Center_SW on route o..
+				Capitol_South(o,1) -->Federal_Center_SW(o,0)[152] 
+				Federal_Center_SW(o,1) -->Capitol_South(o,0)[152] 
+				Federal_Center_SW(o,0) -->Federal_Center_SW(o,1)[30] 
+	L'Enfant_Plaza	L'Enfant_Plaza(o, 1) already created..	
+				L'Enfant_Plaza(g, 1) already exists	..CroosOver from o to g stop : L'Enfant_Plaza	
+				L'Enfant_Plaza(o,0) -->L'Enfant_Plaza(g,1)[60] 
+				L'Enfant_Plaza(y, 1) already exists	..CroosOver from o to y stop : L'Enfant_Plaza	
+				L'Enfant_Plaza(o,0) -->L'Enfant_Plaza(y,1)[70] 
+				L'Enfant_Plaza(b, 1) already exists	..CroosOver from o to b stop : L'Enfant_Plaza	
+				L'Enfant_Plaza(o,0) -->L'Enfant_Plaza(b,1)[40] 
+				L'Enfant_Plaza(s, 1) already exists	..CroosOver from o to s stop : L'Enfant_Plaza	
+				L'Enfant_Plaza(o,0) -->L'Enfant_Plaza(s,1)[35] ...Connecting Federal_Center_SW and L'Enfant_Plaza on route o..
+				Federal_Center_SW(o,1) -->L'Enfant_Plaza(o,0)[140] 
+				L'Enfant_Plaza(o,1) -->Federal_Center_SW(o,0)[140] 
+				L'Enfant_Plaza(o,0) -->L'Enfant_Plaza(o,1)[40] 
+	Smithsonian	Smithsonian(o, 1) already created..	
+				Smithsonian(b, 1) already exists	..CroosOver from o to b stop : Smithsonian	
+				Smithsonian(o,0) -->Smithsonian(b,1)[30] 
+				Smithsonian(s, 1) already exists	..CroosOver from o to s stop : Smithsonian	
+				Smithsonian(o,0) -->Smithsonian(s,1)[50] ...Connecting L'Enfant_Plaza and Smithsonian on route o..
+				L'Enfant_Plaza(o,1) -->Smithsonian(o,0)[204] 
+				Smithsonian(o,1) -->L'Enfant_Plaza(o,0)[204] 
+				Smithsonian(o,0) -->Smithsonian(o,1)[50] 
+	Federal_Triangle	Federal_Triangle(o, 1) already created..	
+				Federal_Triangle(b, 1) already exists	..CroosOver from o to b stop : Federal_Triangle	
+				Federal_Triangle(o,0) -->Federal_Triangle(b,1)[25] 
+				Federal_Triangle(s, 1) already exists	..CroosOver from o to s stop : Federal_Triangle	
+				Federal_Triangle(o,0) -->Federal_Triangle(s,1)[45] ...Connecting Smithsonian and Federal_Triangle on route o..
+				Smithsonian(o,1) -->Federal_Triangle(o,0)[186] 
+				Federal_Triangle(o,1) -->Smithsonian(o,0)[186] 
+				Federal_Triangle(o,0) -->Federal_Triangle(o,1)[30] 
+	Metro_Center	Metro_Center(o, 1) already created..	
+				Metro_Center(b, 1) already exists	..CroosOver from o to b stop : Metro_Center	
+				Metro_Center(o,0) -->Metro_Center(b,1)[30] 
+				Metro_Center(s, 1) already exists	..CroosOver from o to s stop : Metro_Center	
+				Metro_Center(o,0) -->Metro_Center(s,1)[40] 
+				Metro_Center(r, 1) already exists	..CroosOver from o to r stop : Metro_Center	
+				Metro_Center(o,0) -->Metro_Center(r,1)[50] ...Connecting Federal_Triangle and Metro_Center on route o..
+				Federal_Triangle(o,1) -->Metro_Center(o,0)[160] 
+				Metro_Center(o,1) -->Federal_Triangle(o,0)[160] 
+				Metro_Center(o,0) -->Metro_Center(o,1)[45] 
+	McPherson_Sq	McPherson_Sq(o, 1) already created..	
+				McPherson_Sq(b, 1) already exists	..CroosOver from o to b stop : McPherson_Sq	
+				McPherson_Sq(o,0) -->McPherson_Sq(b,1)[25] 
+				McPherson_Sq(s, 1) already exists	..CroosOver from o to s stop : McPherson_Sq	
+				McPherson_Sq(o,0) -->McPherson_Sq(s,1)[20] ...Connecting Metro_Center and McPherson_Sq on route o..
+				Metro_Center(o,1) -->McPherson_Sq(o,0)[150] 
+				McPherson_Sq(o,1) -->Metro_Center(o,0)[150] 
+				McPherson_Sq(o,0) -->McPherson_Sq(o,1)[30] 
+	Farragut_West	Farragut_West(o, 1) already created..	
+				Farragut_West(b, 1) already exists	..CroosOver from o to b stop : Farragut_West	
+				Farragut_West(o,0) -->Farragut_West(b,1)[40] 
+				Farragut_West(s, 1) already exists	..CroosOver from o to s stop : Farragut_West	
+				Farragut_West(o,0) -->Farragut_West(s,1)[35] ...Connecting McPherson_Sq and Farragut_West on route o..
+				McPherson_Sq(o,1) -->Farragut_West(o,0)[159] 
+				Farragut_West(o,1) -->McPherson_Sq(o,0)[159] 
+				Farragut_West(o,0) -->Farragut_West(o,1)[20] 
+	Foggy_Bottom_GWU	Foggy_Bottom_GWU(o, 1) already created..	
+				Foggy_Bottom_GWU(s, 1) already exists	..CroosOver from o to s stop : Foggy_Bottom_GWU	
+				Foggy_Bottom_GWU(o,0) -->Foggy_Bottom_GWU(s,1)[30] 
+				Foggy_Bottom_GWU(b, 1) already exists	..CroosOver from o to b stop : Foggy_Bottom_GWU	
+				Foggy_Bottom_GWU(o,0) -->Foggy_Bottom_GWU(b,1)[20] ...Connecting Farragut_West and Foggy_Bottom_GWU on route o..
+				Farragut_West(o,1) -->Foggy_Bottom_GWU(o,0)[178] 
+				Foggy_Bottom_GWU(o,1) -->Farragut_West(o,0)[178] 
+				Foggy_Bottom_GWU(o,0) -->Foggy_Bottom_GWU(o,1)[25] 
+	Rosslyn	Rosslyn(o, 1) already created..	
+				Rosslyn(b, 1) already exists	..CroosOver from o to b stop : Rosslyn	
+				Rosslyn(o,0) -->Rosslyn(b,1)[50] 
+				Rosslyn(s, 1) already exists	..CroosOver from o to s stop : Rosslyn	
+				Rosslyn(o,0) -->Rosslyn(s,1)[45] ...Connecting Foggy_Bottom_GWU and Rosslyn on route o..
+				Foggy_Bottom_GWU(o,1) -->Rosslyn(o,0)[374] 
+				Rosslyn(o,1) -->Foggy_Bottom_GWU(o,0)[374] 
+				Rosslyn(o,0) -->Rosslyn(o,1)[20] 
+	Court_House	Court_House(o, 1) already created..	
+				Court_House(s, 1) already exists	..CroosOver from o to s stop : Court_House	
+				Court_House(o,0) -->Court_House(s,1)[15] ...Connecting Rosslyn and Court_House on route o..
+				Rosslyn(o,1) -->Court_House(o,0)[289] 
+				Court_House(o,1) -->Rosslyn(o,0)[289] 
+				Court_House(o,0) -->Court_House(o,1)[20] 
+	Clarendon	Clarendon(o, 1) already created..	
+				Clarendon(s, 1) already exists	..CroosOver from o to s stop : Clarendon	
+				Clarendon(o,0) -->Clarendon(s,1)[20] ...Connecting Court_House and Clarendon on route o..
+				Court_House(o,1) -->Clarendon(o,0)[145] 
+				Clarendon(o,1) -->Court_House(o,0)[145] 
+				Clarendon(o,0) -->Clarendon(o,1)[15] 
+	Virginia_Sq_GMU	Virginia_Sq_GMU(o, 1) already created..	
+				Virginia_Sq_GMU(s, 1) already exists	..CroosOver from o to s stop : Virginia_Sq_GMU	
+				Virginia_Sq_GMU(o,0) -->Virginia_Sq_GMU(s,1)[15] ...Connecting Clarendon and Virginia_Sq_GMU on route o..
+				Clarendon(o,1) -->Virginia_Sq_GMU(o,0)[143] 
+				Virginia_Sq_GMU(o,1) -->Clarendon(o,0)[143] 
+				Virginia_Sq_GMU(o,0) -->Virginia_Sq_GMU(o,1)[35] 
+	Ballston_MU	Ballston_MU(o, 1) already created..	
+				Ballston_MU(s, 1) already exists	..CroosOver from o to s stop : Ballston_MU	
+				Ballston_MU(o,0) -->Ballston_MU(s,1)[20] ...Connecting Virginia_Sq_GMU and Ballston_MU on route o..
+				Virginia_Sq_GMU(o,1) -->Ballston_MU(o,0)[117] 
+				Ballston_MU(o,1) -->Virginia_Sq_GMU(o,0)[117] 
+				Ballston_MU(o,0) -->Ballston_MU(o,1)[30] 
+	East_Falls_Church	East_Falls_Church(o, 1) already created..	
+				East_Falls_Church(s, 1) already exists	..CroosOver from o to s stop : East_Falls_Church	
+				East_Falls_Church(o,0) -->East_Falls_Church(s,1)[50] ...Connecting Ballston_MU and East_Falls_Church on route o..
+				Ballston_MU(o,1) -->East_Falls_Church(o,0)[173] 
+				East_Falls_Church(o,1) -->Ballston_MU(o,0)[173] 
+				East_Falls_Church(o,0) -->East_Falls_Church(o,1)[50] 
+	West_Falls_Church...Connecting East_Falls_Church and West_Falls_Church on route o..
+				East_Falls_Church(o,1) -->West_Falls_Church(o,0)[122] 
+				West_Falls_Church(o,1) -->East_Falls_Church(o,0)[122] 
+				West_Falls_Church(o,0) -->West_Falls_Church(o,1)[20] 
+	Dunn_Loring...Connecting West_Falls_Church and Dunn_Loring on route o..
+				West_Falls_Church(o,1) -->Dunn_Loring(o,0)[120] 
+				Dunn_Loring(o,1) -->West_Falls_Church(o,0)[120] 
+				Dunn_Loring(o,0) -->Dunn_Loring(o,1)[20] 
+	Vienna...Connecting Dunn_Loring and Vienna on route o..
+				Dunn_Loring(o,1) -->Vienna(o,0)[310] 
+				Vienna(o,1) -->Dunn_Loring(o,0)[310] 
+				Vienna(o,0) -->Vienna(o,1)[0] 
+r
+	Glenmont
+				Glenmont(r,0) -->Glenmont(r,1)[0] 
+	Wheaton...Connecting Glenmont and Wheaton on route r..
+				Glenmont(r,1) -->Wheaton(r,0)[133] 
+				Wheaton(r,1) -->Glenmont(r,0)[133] 
+				Wheaton(r,0) -->Wheaton(r,1)[28] 
+	Forest_Glen...Connecting Wheaton and Forest_Glen on route r..
+				Wheaton(r,1) -->Forest_Glen(r,0)[108] 
+				Forest_Glen(r,1) -->Wheaton(r,0)[108] 
+				Forest_Glen(r,0) -->Forest_Glen(r,1)[20] 
+	Silver_Spring...Connecting Forest_Glen and Silver_Spring on route r..
+				Forest_Glen(r,1) -->Silver_Spring(r,0)[100] 
+				Silver_Spring(r,1) -->Forest_Glen(r,0)[100] 
+				Silver_Spring(r,0) -->Silver_Spring(r,1)[35] 
+	Takoma...Connecting Silver_Spring and Takoma on route r..
+				Silver_Spring(r,1) -->Takoma(r,0)[207] 
+				Takoma(r,1) -->Silver_Spring(r,0)[207] 
+				Takoma(r,0) -->Takoma(r,1)[40] 
+	Fort_Totten	Fort_Totten(r, 1) already created..	
+				Fort_Totten(y, 1) already exists	..CroosOver from r to y stop : Fort_Totten	
+				Fort_Totten(r,0) -->Fort_Totten(y,1)[30] 
+				Fort_Totten(g, 1) already exists	..CroosOver from r to g stop : Fort_Totten	
+				Fort_Totten(r,0) -->Fort_Totten(g,1)[25] ...Connecting Takoma and Fort_Totten on route r..
+				Takoma(r,1) -->Fort_Totten(r,0)[229] 
+				Fort_Totten(r,1) -->Takoma(r,0)[229] 
+				Fort_Totten(r,0) -->Fort_Totten(r,1)[20] 
+	Brookland_CUA...Connecting Fort_Totten and Brookland_CUA on route r..
+				Fort_Totten(r,1) -->Brookland_CUA(r,0)[250] 
+				Brookland_CUA(r,1) -->Fort_Totten(r,0)[250] 
+				Brookland_CUA(r,0) -->Brookland_CUA(r,1)[20] 
+	Rhode_Island_Ave...Connecting Brookland_CUA and Rhode_Island_Ave on route r..
+				Brookland_CUA(r,1) -->Rhode_Island_Ave(r,0)[100] 
+				Rhode_Island_Ave(r,1) -->Brookland_CUA(r,0)[100] 
+				Rhode_Island_Ave(r,0) -->Rhode_Island_Ave(r,1)[27] 
+	NoMa_Gallaudet_U...Connecting Rhode_Island_Ave and NoMa_Gallaudet_U on route r..
+				Rhode_Island_Ave(r,1) -->NoMa_Gallaudet_U(r,0)[99] 
+				NoMa_Gallaudet_U(r,1) -->Rhode_Island_Ave(r,0)[99] 
+				NoMa_Gallaudet_U(r,0) -->NoMa_Gallaudet_U(r,1)[25] 
+	Union_Station...Connecting NoMa_Gallaudet_U and Union_Station on route r..
+				NoMa_Gallaudet_U(r,1) -->Union_Station(r,0)[119] 
+				Union_Station(r,1) -->NoMa_Gallaudet_U(r,0)[119] 
+				Union_Station(r,0) -->Union_Station(r,1)[40] 
+	Judiciary_Sq...Connecting Union_Station and Judiciary_Sq on route r..
+				Union_Station(r,1) -->Judiciary_Sq(r,0)[165] 
+				Judiciary_Sq(r,1) -->Union_Station(r,0)[165] 
+				Judiciary_Sq(r,0) -->Judiciary_Sq(r,1)[23] 
+	Gallery_Place	Gallery_Place(r, 1) already created..	
+				Gallery_Place(y, 1) already exists	..CroosOver from r to y stop : Gallery_Place	
+				Gallery_Place(r,0) -->Gallery_Place(y,1)[25] 
+				Gallery_Place(g, 1) already exists	..CroosOver from r to g stop : Gallery_Place	
+				Gallery_Place(r,0) -->Gallery_Place(g,1)[30] ...Connecting Judiciary_Sq and Gallery_Place on route r..
+				Judiciary_Sq(r,1) -->Gallery_Place(r,0)[102] 
+				Gallery_Place(r,1) -->Judiciary_Sq(r,0)[102] 
+				Gallery_Place(r,0) -->Gallery_Place(r,1)[40] 
+	Metro_Center	Metro_Center(r, 1) already created..	
+				Metro_Center(o, 1) already exists	..CroosOver from r to o stop : Metro_Center	
+				Metro_Center(r,0) -->Metro_Center(o,1)[41] 
+				Metro_Center(s, 1) already exists	..CroosOver from r to s stop : Metro_Center	
+				Metro_Center(r,0) -->Metro_Center(s,1)[42] 
+				Metro_Center(b, 1) already exists	..CroosOver from r to b stop : Metro_Center	
+				Metro_Center(r,0) -->Metro_Center(b,1)[43] ...Connecting Gallery_Place and Metro_Center on route r..
+				Gallery_Place(r,1) -->Metro_Center(r,0)[116] 
+				Metro_Center(r,1) -->Gallery_Place(r,0)[116] 
+				Metro_Center(r,0) -->Metro_Center(r,1)[33] 
+	Farragut_North...Connecting Metro_Center and Farragut_North on route r..
+				Metro_Center(r,1) -->Farragut_North(r,0)[174] 
+				Farragut_North(r,1) -->Metro_Center(r,0)[174] 
+				Farragut_North(r,0) -->Farragut_North(r,1)[20] 
+	Dupont_Circle...Connecting Farragut_North and Dupont_Circle on route r..
+				Farragut_North(r,1) -->Dupont_Circle(r,0)[100] 
+				Dupont_Circle(r,1) -->Farragut_North(r,0)[100] 
+				Dupont_Circle(r,0) -->Dupont_Circle(r,1)[19] 
+	Woodley_Park...Connecting Dupont_Circle and Woodley_Park on route r..
+				Dupont_Circle(r,1) -->Woodley_Park(r,0)[100] 
+				Woodley_Park(r,1) -->Dupont_Circle(r,0)[100] 
+				Woodley_Park(r,0) -->Woodley_Park(r,1)[19] 
+	Cleveland_Park...Connecting Woodley_Park and Cleveland_Park on route r..
+				Woodley_Park(r,1) -->Cleveland_Park(r,0)[120] 
+				Cleveland_Park(r,1) -->Woodley_Park(r,0)[120] 
+				Cleveland_Park(r,0) -->Cleveland_Park(r,1)[19] 
+	Van_Ness_UDC...Connecting Cleveland_Park and Van_Ness_UDC on route r..
+				Cleveland_Park(r,1) -->Van_Ness_UDC(r,0)[98] 
+				Van_Ness_UDC(r,1) -->Cleveland_Park(r,0)[98] 
+				Van_Ness_UDC(r,0) -->Van_Ness_UDC(r,1)[19] 
+	Tenleytown_AU...Connecting Van_Ness_UDC and Tenleytown_AU on route r..
+				Van_Ness_UDC(r,1) -->Tenleytown_AU(r,0)[130] 
+				Tenleytown_AU(r,1) -->Van_Ness_UDC(r,0)[130] 
+				Tenleytown_AU(r,0) -->Tenleytown_AU(r,1)[19] 
+	Frienship_Heights...Connecting Tenleytown_AU and Frienship_Heights on route r..
+				Tenleytown_AU(r,1) -->Frienship_Heights(r,0)[151] 
+				Frienship_Heights(r,1) -->Tenleytown_AU(r,0)[151] 
+				Frienship_Heights(r,0) -->Frienship_Heights(r,1)[19] 
+	Bethesda...Connecting Frienship_Heights and Bethesda on route r..
+				Frienship_Heights(r,1) -->Bethesda(r,0)[126] 
+				Bethesda(r,1) -->Frienship_Heights(r,0)[126] 
+				Bethesda(r,0) -->Bethesda(r,1)[19] 
+	Medical_Center...Connecting Bethesda and Medical_Center on route r..
+				Bethesda(r,1) -->Medical_Center(r,0)[113] 
+				Medical_Center(r,1) -->Bethesda(r,0)[113] 
+				Medical_Center(r,0) -->Medical_Center(r,1)[19] 
+	Grosvenor_Strathmore...Connecting Medical_Center and Grosvenor_Strathmore on route r..
+				Medical_Center(r,1) -->Grosvenor_Strathmore(r,0)[159] 
+				Grosvenor_Strathmore(r,1) -->Medical_Center(r,0)[159] 
+				Grosvenor_Strathmore(r,0) -->Grosvenor_Strathmore(r,1)[19] 
+	White_Flint...Connecting Grosvenor_Strathmore and White_Flint on route r..
+				Grosvenor_Strathmore(r,1) -->White_Flint(r,0)[131] 
+				White_Flint(r,1) -->Grosvenor_Strathmore(r,0)[131] 
+				White_Flint(r,0) -->White_Flint(r,1)[30] 
+	Twinbrook...Connecting White_Flint and Twinbrook on route r..
+				White_Flint(r,1) -->Twinbrook(r,0)[119] 
+				Twinbrook(r,1) -->White_Flint(r,0)[119] 
+				Twinbrook(r,0) -->Twinbrook(r,1)[19] 
+	Rockville...Connecting Twinbrook and Rockville on route r..
+				Twinbrook(r,1) -->Rockville(r,0)[136] 
+				Rockville(r,1) -->Twinbrook(r,0)[136] 
+				Rockville(r,0) -->Rockville(r,1)[19] 
+	Shady_Grove...Connecting Rockville and Shady_Grove on route r..
+				Rockville(r,1) -->Shady_Grove(r,0)[215] 
+				Shady_Grove(r,1) -->Rockville(r,0)[215] 
+				Shady_Grove(r,0) -->Shady_Grove(r,1)[0] 
+McLean(s,0)-> McLean(s,1)[20]-> East_Falls_Church(s,0)[171]-> East_Falls_Church(s,1)[221]-> Ballston_MU(s,0)[371]-> Ballston_MU(o,1)[391]-> Virginia_Sq_GMU(o,0)[508]-> Virginia_Sq_GMU(s,1)[523]-> Clarendon(s,0)[656]-> Clarendon(s,1)[681]-> Court_House(s,0)[801]-> Court_House(s,1)[821]-> Rosslyn(s,0)[1081]-> Rosslyn(o,1)[1101]-> Foggy_Bottom_GWU(o,0)[1475]-> Foggy_Bottom_GWU(b,1)[1495]-> Farragut_West(b,0)[1633]-> Farragut_West(o,1)[1653]-> McPherson_Sq(o,0)[1812]-> McPherson_Sq(b,1)[1837]-> Metro_Center(b,0)[2025]-> Metro_Center(r,1)[2035]-> Gallery_Place(r,0)[2151]-> Gallery_Place(g,1)[2181]-> Mt_Vernon_Sq(g,0)[2301]-> Mt_Vernon_Sq(y,1)[2326]-> Shaw_Howard_U(y,0)[2446]-> Shaw_Howard_U(g,1)[2471]-> U_St(g,0)[2591]-> U_St(y,1)[2611]-> Columbia_Heights(y,0)[2791]-> Columbia_Heights(g,1)[2811]-> Georgia_Ave_Petworth(g,0)[2991]-> Georgia_Ave_Petworth(y,1)[3011]-> Fort_Totten(y,0)[3111]-> Fort_Totten(r,1)[3156]-> Takoma(r,0)[3385]-> Takoma(r,1)[3425]-> Silver_Spring(r,0)[3632]-> Silver_Spring(r,1)[3667]-> Forest_Glen(r,0)[3767]-> Forest_Glen(r,1)[3787]-> Wheaton(r,0)[3895]

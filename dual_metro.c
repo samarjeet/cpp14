@@ -6,8 +6,8 @@
 #include<algorithm>
 
 #define NUM_ROUTES 6
-#define N_EDGES 1000
-#define N_NODES 400
+#define N_EDGES 600
+#define N_NODES 300
 
 // data structures
 typedef struct node_t node_t, *heap_t;
@@ -54,8 +54,9 @@ char* getString(char* str, int st, int end){
   printf("%s--%s", str, subString);
   return subString;
 }
-
+int edge_count = 0;
 void addEdge(node_t* from, node_t* to, int cost){
+  edge_count++;
   printf("\n\t\t\t\t%s(%c,%d) -->%s(%c,%d)[%d] ", from->name, from->route, from->state, to->name, to->route,to->state,  cost);
   edge_next->nextNode=to;
   edge_next->cost=cost;
@@ -280,8 +281,8 @@ int main(int argc, char* argv[]){
   node_t *lead;
   edge_t *e;
 
-  //Key k1 = {'g', "College_Park", 1};
-  //Key k2 = {'r', "Takoma", 0};
+  Key k1 = {'g', "College_Park", 1};
+  Key k2 = {'r', "Takoma", 0};
   //Key k2 = {'g', "College_Park", 0};
   //Key k1 = {'r', "Takoma", 1};
 
@@ -308,8 +309,8 @@ int main(int argc, char* argv[]){
   //Key k1 = {'s', "Wiehle_Reston", 1};
   //Key k2 = {'g', "College_Park", 0};
 
-  Key k1 = {'y', "Shaw_Howard_U", 0};
-  Key k2 = {'y', "Columbia_Heights", 0};
+  //Key k1 = {'y', "Shaw_Howard_U", 0};
+  //Key k2 = {'y', "Columbia_Heights", 0};
 
   //Key k1 = {'y', "U_St"};
   //Key k1 = {'r', "Glenmont"};
@@ -327,5 +328,9 @@ int main(int argc, char* argv[]){
   //showPath(nodes+15);
   showPath(hashNodes[k2]);
   printf("\n");
+  free(nodes);
+  free(edge_root);
+  free(heap);
+  printf("Nodes: %d Edges: %d\n", nodeId, edge_count);
   return 0;
 }
