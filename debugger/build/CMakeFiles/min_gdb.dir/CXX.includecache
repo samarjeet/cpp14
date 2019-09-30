@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../ext/linenoise/linenoise.h
+
+../include/debugger.h
+
+/u/samar/Documents/git/cpp14/debugger/src/debugger.cpp
+vector
+-
+string
+-
+linenoise.h
+/u/samar/Documents/git/cpp14/debugger/src/linenoise.h
+debugger.h
+/u/samar/Documents/git/cpp14/debugger/src/debugger.h
+iostream
+-
+sstream
+-
+sys/ptrace.h
+-
+sys/types.h
+-
+sys/wait.h
+-
+

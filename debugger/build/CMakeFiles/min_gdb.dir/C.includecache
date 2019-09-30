@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/u/samar/Documents/git/cpp14/debugger/ext/linenoise/linenoise.c
+termios.h
+-
+unistd.h
+-
+stdlib.h
+-
+stdio.h
+-
+errno.h
+-
+string.h
+-
+ctype.h
+-
+sys/stat.h
+-
+sys/types.h
+-
+sys/ioctl.h
+-
+linenoise.h
+/u/samar/Documents/git/cpp14/debugger/ext/linenoise/linenoise.h
+
+/u/samar/Documents/git/cpp14/debugger/ext/linenoise/linenoise.h
+
